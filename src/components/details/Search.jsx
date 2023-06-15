@@ -1,13 +1,16 @@
-import { HStack, Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react";
-import {BsSearch} from "react-icons/bs";
+import { Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react";
+import {BsSearch, BsChevronRight} from "react-icons/bs";
 
 function Search() {
     return (
         <InputGroup w={"45%"}>
             <InputLeftElement pointerEvents={"none"}>
-                <BsSearch/>
+                <BsSearch color="#ffffff"/>
             </InputLeftElement>
-            <Input type="text" placeholder="Search"/>
+            <Input type="text" color={"#ffffff"} placeholder="Search"/>
+            <InputRightElement>
+                <BsChevronRight color="#ffffff"/>
+            </InputRightElement>
         </InputGroup>
     );
 }

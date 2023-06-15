@@ -1,4 +1,4 @@
-import {Center, Flex, Spacer} from '@chakra-ui/react'
+import {Flex, Spacer} from '@chakra-ui/react'
 import NavLeft from './details/NavLeft';
 import NavRight from './details/NavRight';
 import Search from './details/Search';
@@ -10,6 +10,7 @@ function NavBar(){
             position={"sticky"}
             top={"0px"}
             alignItems={"center"}
+            backdropFilter={"blur(3px)"}
             bgColor={"#555555DD"}>
             <NavLeft />
             <Spacer />
