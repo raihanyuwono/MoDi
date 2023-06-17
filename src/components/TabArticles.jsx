@@ -1,4 +1,5 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import ContainerArticles from './ContainerArticles';
 
 const articleDummy = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
 Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
@@ -11,13 +12,15 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similiqu
 Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
 Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
 Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
-`;
+`; 
 
 function TabArticles() {
   return (
     <Tabs isFitted variant={'enclosed-colored'}>
       <TabPanels>
-        <TabPanel>1.{articleDummy}</TabPanel>
+        <TabPanel>
+          <ContainerArticles />
+        </TabPanel>
         <TabPanel>2.{articleDummy}</TabPanel>
         <TabPanel>3.{articleDummy}</TabPanel>
       </TabPanels>
