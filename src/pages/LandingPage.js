@@ -1,9 +1,9 @@
-import TabArticles from "../components/TabArticles";
+import TabContents from "../components/TabContents";
 
 function LandingPage(){
     return (
         <>
-            <TabArticles/>
+            <TabContents/>
         </>
     )
 }
