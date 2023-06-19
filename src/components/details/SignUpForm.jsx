@@ -1,33 +1,48 @@
-import { FiMail, FiPhone, FiUnlock } from 'react-icons/fi';
+import { FiMail, FiPhone, FiUnlock, FiUser } from 'react-icons/fi';
 import CustomInputForm from './CustomInputForm';
+import { color } from '../../themes/Themes';
+import { useState } from 'react';
 
 function SignUpForm() {
-  const iconColor = '#ffffff';
+
+  const [showPass, setShowPass] = useState(false);
+  const [showPassConfirm, setShowPassConfirm] = useState(false);
+
   return (
     <>
+      <CustomInputForm
+        id="username"
+        type="text"
+        placeholder="Username"
+        icon={<FiUser color={color.textIcon} />}
+      />
       <CustomInputForm
         id="email"
         type="email"
         placeholder="Email"
-        icon={<FiMail color={iconColor} />}
+        icon={<FiMail color={color.textIcon} />}
       />
       <CustomInputForm
         id="password"
         type="password"
         placeholder="Password"
-        icon={<FiUnlock color={iconColor} />}
+        pass={showPass}
+        onPass={() => setShowPass(!showPass)}
+        icon={<FiUnlock color={color.textIcon} />}
       />
       <CustomInputForm
-        id="password-check"
+        id="password-confirm"
         type="password"
         placeholder="Re-type Password"
-        icon={<FiUnlock color={iconColor} />}
+        pass={showPassConfirm}
+        onPass={() => setShowPassConfirm(!showPassConfirm)}
+        icon={<FiUnlock color={color.textIcon} />}
       />
       <CustomInputForm
         id="phone"
         type="tel"
         placeholder="Phone"
-        icon={<FiPhone color={iconColor} />}
+        icon={<FiPhone color={color.textIcon} />}
       />
     </>
   );

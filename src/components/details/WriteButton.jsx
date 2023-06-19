@@ -1,18 +1,15 @@
 import { Button } from "@chakra-ui/react";
 import {RiQuillPenLine} from "react-icons/ri"
+import { color } from "../../themes/Themes";
 
 function WriteButton({isWriting = false}){
-
-    const btnTextColor = "#FFFFFF"
-    const btnColor = "#04B33E"
 
     return (
         <Button leftIcon={<RiQuillPenLine/>}
         variant={"outline"}
-        w={"6rem"}
-        color={btnTextColor}
-        borderColor={btnColor}
-        _hover={{bgColor: btnColor}}>
+        color={color.textIcon}
+        borderColor={color.login}
+        _hover={{bgColor: color.login}}>
             {isWriting ? "Publish" : "Write"}
         </Button>
     );

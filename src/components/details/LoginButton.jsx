@@ -1,11 +1,15 @@
 import { Button, useDisclosure } from '@chakra-ui/react';
+import {color} from "../../themes/Themes"
 import ModalSignIn from '../ModalSignIn';
 
 function LoginButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button variant={'outline'} onClick={onOpen}>
+      <Button variant={'solid'} 
+      bgColor={color.accent}
+      _hover={{bgColor: color.accentSecondary}}
+      onClick={onOpen}>
         Sign In
       </Button>
       <ModalSignIn isOpen={isOpen} onClose={onClose} />
