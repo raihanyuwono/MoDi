@@ -6,7 +6,8 @@ function LoginButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button variant={'solid'} 
+      <Button variant={'solid'}
+      color={color.textIcon} 
       bgColor={color.accent}
       _hover={{bgColor: color.accentSecondary}}
       onClick={onOpen}>

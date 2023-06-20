@@ -15,21 +15,25 @@ export const color = {
 }
 
 export const theme = extendTheme({
+    fonts: {
+        body: "Fira Sans, monospace",
+    },
     components: {
         Button: {
             baseStyle:{
-                fontWeight: "semibold"
+                fontWeight: "regular",
+                fontFamily: "Fira Code, monospace",
             },
             sizes: {
                 md:{
-                    width: "4rem",
+                    width: "4.2rem",
                     height: "2.3rem",
-                    fontSize: "0.75rem"
+                    fontSize: "0.70rem",
                 },
                 xl:{
                     width: "5.6rem",
-                    height: "2.6rem",
-                    fontSize: "1rem"
+                    height: "2.65rem",
+                    fontSize: "0.95rem",
                 }
             },
             defaultProps: {

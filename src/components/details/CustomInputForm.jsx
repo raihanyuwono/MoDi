@@ -18,7 +18,7 @@ function CustomInputForm({ id, type, placeholder, icon, pass, onPass }) {
       else document.getElementById(id).type = "password";
     }
     
-    if(type == "password")
+    if(type === "password")
     return (
       <InputRightElement>
         {

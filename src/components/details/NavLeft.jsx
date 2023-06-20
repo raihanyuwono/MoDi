@@ -5,7 +5,7 @@ function NavLeft() {
     return (
         <Flex gap={2} alignItems={"center"}>
             <GiBookAura size={"2.5rem"}/>
-            <Text fontSize={"xl"} fontWeight={"semibold"}>MoDi</Text>
+            <Text fontFamily={"Fira Sans"} fontSize={"xl"} fontWeight={"semibold"}>MoDi</Text>
         </Flex>
     );
 }

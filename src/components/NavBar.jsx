@@ -11,6 +11,7 @@ function NavBar(){
             position={"sticky"}
             top={"0px"}
             alignItems={"center"}
+            color={color.textIcon}
             bgColor={color.darkPrimary}>
             <NavLeft />
             <Spacer />
