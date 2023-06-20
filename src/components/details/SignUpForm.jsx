@@ -1,10 +1,16 @@
-import { FiMail, FiPhone, FiUnlock } from 'react-icons/fi';
+import { FiMail, FiPhone, FiUnlock, FiUser } from 'react-icons/fi';
 import CustomInputForm from './CustomInputForm';
 
 function SignUpForm() {
   const iconColor = '#ffffff';
   return (
     <>
+      <CustomInputForm
+        id="username"
+        type="text"
+        placeholder="Username"
+        icon={<FiUser color={iconColor} />}
+      />
       <CustomInputForm
         id="email"
         type="email"

@@ -21,7 +21,6 @@ function NavRight() {
             <WriteButton />
             <LoginButton />
         </Flex>
-
     );
 }
 
