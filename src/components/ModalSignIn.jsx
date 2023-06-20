@@ -11,6 +11,7 @@ import {
 import LoginForm from './details/LoginForm';
 import SignUpForm from './details/SignUpForm';
 import { useState } from 'react';
+import {color} from "../themes/Themes";
 
 function ModalSignIn({ isOpen, onClose}) {
   const [wantLogin, setWantLogin] = useState(true);
@@ -52,9 +53,9 @@ function ModalSignIn({ isOpen, onClose}) {
             <Button
               w={'100%'}
               borderRadius={'3rem'}
-              color={'#ffffff'}
-              bgColor={'#007D00'}
-              _hover={{ bgColor: '#00B300' }}
+              color={color.textIcon}
+              bgColor={color.login}
+              _hover={{ bgColor: color.loginSecondary }}
               onClick={wantLogin ? onSignIn : onSignUp}
             >
               {btnText}
@@ -62,7 +63,7 @@ function ModalSignIn({ isOpen, onClose}) {
             <Text textAlign={'center'} fontSize={'sm'}>
               {wantLogin ? 'Do you want to join?' : 'Already a member?'}
               <Text
-                color={'#0E4090'}
+                color={color.accent}
                 textDecorationLine={"underline"}
                 cursor={"pointer"}
                 onClick={wantLogin ? onWantSignUp : onWantSignIn}

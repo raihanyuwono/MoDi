@@ -3,15 +3,16 @@ import {RiNotificationLine} from "react-icons/ri"
 import {BsBookmark} from "react-icons/bs"
 import WriteButton from "./WriteButton";
 import LoginButton from "./LoginButton";
+import {color} from "../../themes/Themes"
 
 function NavRight() {
     const isLogin = false;
     if (isLogin)
     return (
-        <Flex direction={"row"} alignItems={"center"} gap={2}>
+        <Flex direction={"row"} alignItems={"center"} gap={3}>
             <WriteButton />
-            <BsBookmark color="#ffffff" size={"1.25rem"}/>
-            <RiNotificationLine color="wh" size={"1.25rem"}/>
+            <BsBookmark color={color.textIcon} size={"1.4rem"}/>
+            <RiNotificationLine color={color.textIcon} size={"1.4rem"}/>
             <Avatar size={"sm"}/>
         </Flex>
     );

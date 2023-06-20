@@ -12,7 +12,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similiqu
 Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
 Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
 Lorem ipsum dolor sit amet consectetur adipisicing elit. \nConsequuntur similique, beatae ab nihil nobis sed eaque deleniti esse unde eveniet veniam omnis quam ipsam pariatur debitis voluptas nisi voluptate facere!
-`;
+`; 
 
 function TabContents() {
   return (
