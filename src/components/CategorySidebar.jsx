@@ -16,6 +16,8 @@ function CategorySidebar() {
       alignItems={'center'}
       pt={'2rem'}
       fontFamily={'Fira Code'}
+      boxShadow={"xl"}
+      zIndex={1}
     >
       <Text mb={'1rem'} fontSize={'2xl'} fontWeight={'semibold'}>
         Categories
