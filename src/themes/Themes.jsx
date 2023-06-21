@@ -3,13 +3,15 @@ import { extendTheme } from "@chakra-ui/react";
 export const color = {
     darkPrimary : "#303F9F",
     lightPrimary : "#C5CAE9",
+    sidebar : "#B5B8CF",
     primary : "#3F51B5",
     accent : "#448AFF",
-    accentSecondary : "#101B49",
+    accentSecondary : "#1B60D8",
     textIcon : "#FFFFFF",
     primaryText : "#212121",
     secondaryText : "#757575",
     divider : "#BDBDBD",
+    dividerSidebar : "linear-gradient(to right, #B5B8CF, #777777, #B5B8CF)",
     login: "#059B37",
     loginSecondary: "#06ac67",
 }

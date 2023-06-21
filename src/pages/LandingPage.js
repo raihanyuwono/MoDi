@@ -1,10 +1,14 @@
-import TabContents from "../components/TabContents";
+import { Flex } from "@chakra-ui/react";
+import CategorySidebar from "../components/CategorySidebar";
+import ContainerPosts from "../components/ContainerPosts";
 
 function LandingPage(){
     return (
-        <>
-            <TabContents/>
-        </>
+        <Flex direction={"row"} w={"full"}>
+            {/* <TabContents/> */}
+            <CategorySidebar />
+            <ContainerPosts />
+        </Flex>
     )
 }
 
