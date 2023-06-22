@@ -49,12 +49,14 @@ function CardArticles({ articles }) {
             </Flex>
             <BsBookmarkPlus onClick={onBookmark} cursor={"pointer"} />
           </Flex>
+
           <Flex
             w={'full'}
+            h={"full"}
             pos={'absolute'}
             bottom={0}
-            bgGradient={'linear-gradient(to-t, #000000, #00000011)'}
-            alignItems={'center'}
+            bgGradient={'linear-gradient(to-t, #000000DF, #00000044,#00000000)'}
+            alignItems={'end'}
             justifyContent={'center'}
             py={'1.1rem'}
           >
@@ -64,15 +66,17 @@ function CardArticles({ articles }) {
               fontWeight={'semibold'}
               fontFamily={"Fira Code"}
               noOfLines={2}
+              textAlign={"center"}
             >
-              {item.title}
+              {item?.title}
             </Text>
           </Flex>
+
           <Image
             w={'full'}
-            minH={'4.4rem'}
+            h={"32vh"}
             alt="Image Error"
-            src={item.img}
+            src={`https://minpro-blog.purwadhikabootcamp.com/${item?.imageURL}`}
             objectFit={'cover'}
             objectPosition={'center'}
           />
@@ -80,11 +84,12 @@ function CardArticles({ articles }) {
         <Text
           px={'10px'}
           py={'3px'}
+          h={"4.8rem"}
           noOfLines={3}
           textAlign={'justify'}
           fontSize={'md'}
         >
-          {item.content}
+          {item?.content}
         </Text>
       </Flex>
     );
