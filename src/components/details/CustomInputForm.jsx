@@ -4,40 +4,36 @@ import {
   InputLeftElement,
   InputRightElement,
 } from '@chakra-ui/react';
-import { color } from '../../themes/Themes';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
 
 function CustomInputForm({ id, type, placeholder, icon, pass, onPass }) {
-
   function rightPassword() {
-    
-    function showPassword(){
+    function showPassword() {
       onPass();
-      if(!pass) document.getElementById(id).type = "text";
-      else document.getElementById(id).type = "password";
+      if (!pass) document.getElementById(id).type = 'text';
+      else document.getElementById(id).type = 'password';
     }
-    
-    if(type === "password")
-    return (
-      <InputRightElement>
-        {
-          pass ? 
-          <FiEye onClick={showPassword}/>
-          :
-          <FiEyeOff onClick={showPassword}/>
-        }
-      </InputRightElement>
-    );
+
+    if (type === 'password')
+      return (
+        <InputRightElement>
+          {pass ? (
+            <FiEye onClick={showPassword} />
+          ) : (
+            <FiEyeOff onClick={showPassword} />
+          )}
+        </InputRightElement>
+      );
   }
 
   return (
     <InputGroup
-      border={`1px solid ${color.divider}`}
+      border={`1px solid ${"divider"}`}
       borderRadius={'3rem'}
       overflow={'hidden'}
     >
-      <InputLeftElement bgColor={color.divider} pointerEvents={'none'}>
+      <InputLeftElement bgColor={"divider"} pointerEvents={'none'}>
         {icon}
       </InputLeftElement>
       <Input

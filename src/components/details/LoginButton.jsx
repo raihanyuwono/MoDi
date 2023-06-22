@@ -1,5 +1,4 @@
 import { Button, useDisclosure } from '@chakra-ui/react';
-import {color} from "../../themes/Themes"
 import ModalSignIn from '../ModalSignIn';
 
 function LoginButton() {
@@ -7,9 +6,9 @@ function LoginButton() {
   return (
     <>
       <Button variant={'solid'}
-      color={color.textIcon} 
-      bgColor={color.accent}
-      _hover={{bgColor: color.accentSecondary}}
+      color={"primaryTextIcon"} 
+      bgColor={"accent"}
+      _hover={{bgColor: "accentSecondary"}}
       onClick={onOpen}>
         Sign In
       </Button>

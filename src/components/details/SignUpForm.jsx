@@ -1,6 +1,5 @@
 import { FiMail, FiPhone, FiUnlock, FiUser } from 'react-icons/fi';
 import CustomInputForm from './CustomInputForm';
-import { color } from '../../themes/Themes';
 import { useState } from 'react';
 
 function SignUpForm() {
@@ -14,13 +13,13 @@ function SignUpForm() {
         id="username"
         type="text"
         placeholder="Username"
-        icon={<FiUser color={color.textIcon} />}
+        icon={<FiUser color={"primaryTextIcon"} />}
       />
       <CustomInputForm
         id="email"
         type="email"
         placeholder="Email"
-        icon={<FiMail color={color.textIcon} />}
+        icon={<FiMail color={"primaryTextIcon"} />}
       />
       <CustomInputForm
         id="password"
@@ -28,7 +27,7 @@ function SignUpForm() {
         placeholder="Password"
         pass={showPass}
         onPass={() => setShowPass(!showPass)}
-        icon={<FiUnlock color={color.textIcon} />}
+        icon={<FiUnlock color={"primaryTextIcon"} />}
       />
       <CustomInputForm
         id="password-confirm"
@@ -36,13 +35,13 @@ function SignUpForm() {
         placeholder="Re-type Password"
         pass={showPassConfirm}
         onPass={() => setShowPassConfirm(!showPassConfirm)}
-        icon={<FiUnlock color={color.textIcon} />}
+        icon={<FiUnlock color={"primaryTextIcon"} />}
       />
       <CustomInputForm
         id="phone"
         type="tel"
         placeholder="Phone"
-        icon={<FiPhone color={color.textIcon} />}
+        icon={<FiPhone color={"primaryTextIcon"} />}
       />
     </>
   );

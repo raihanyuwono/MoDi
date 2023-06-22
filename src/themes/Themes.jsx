@@ -1,30 +1,29 @@
 import { extendTheme } from '@chakra-ui/react';
 
-export const color = {
-  darkPrimary: '#303F9F',
-  lightPrimary: '#C5CAE9',
-  sidebar: '#B5B8CF',
-  primary: '#3F51B5',
-  accent: '#448AFF',
-  accentSecondary: '#1B60D8',
-  textIcon: '#FFFFFF',
-  primaryText: '#212121',
-  secondaryText: '#757575',
-  card: "#D1D4E9",
-  divider: '#BDBDBD',
-  dividerSidebar: 'linear-gradient(to right, #B5B8CF, #777777, #B5B8CF)',
-  login: '#059B37',
-  loginSecondary: '#06ac67',
-};
-
 export const theme = extendTheme({
   fonts: {
     body: 'Fira Sans, monospace',
   },
+  colors: {
+    darkPrimary: '#303F9F',
+    lightPrimary: '#C5CAE9',
+    sidebar: '#B5B8CF',
+    primary: '#3F51B5',
+    accent: '#448AFF',
+    accentSecondary: '#1B60D8',
+    primaryTextIcon: '#FFFFFF',
+    primaryText: '#212121',
+    secondaryText: '#757575',
+    card: '#D1D4E9',
+    divider: '#BDBDBD',
+    dividerSidebar: 'linear-gradient(to right, #B5B8CF, #777777, #B5B8CF)',
+    login: '#059B37',
+    loginSecondary: '#06ac67',
+  },
   components: {
     Text: {
       baseStyle: {
-        color: color.primaryText,
+        color: "primaryText",
       },
     },
     Button: {

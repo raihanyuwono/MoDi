@@ -1,16 +1,8 @@
 import {
   Box,
   Flex,
-  HStack,
-  IconButton,
   Image,
-  Menu,
-  MenuButton,
-  MenuIcon,
-  MenuItem,
-  MenuList,
   Text,
-  VStack,
 } from '@chakra-ui/react';
 import { color } from '../../themes/Themes';
 import { BsBookmarkPlus } from 'react-icons/bs';
@@ -29,7 +21,7 @@ function CardArticles({ articles }) {
     return (
       <Flex
         direction={'column'}
-        bgColor={color.card}
+        bgColor={"card"}
         borderRadius={'8px'}
         overflow={'hidden'}
         boxShadow={'md'}
@@ -46,11 +38,12 @@ function CardArticles({ articles }) {
             top={'0.5rem'}
             right={'0.5rem'}
             fontSize={'xl'}
+            color={"primaryTextIcon"}
             alignItems={'end'}
             gap={1}
           >
             <Flex gap={1}>
-              <Text color={color.textIcon} fontSize={'md'}>
+              <Text color={"primaryTextIcon"} fontSize={'md'}>
                 {item.likes}
               </Text>
               <HiHeart onClick={onLike} cursor={"pointer"} />
@@ -67,7 +60,7 @@ function CardArticles({ articles }) {
             py={'1.1rem'}
           >
             <Text
-              color={color.textIcon}
+              color={"primaryTextIcon"}
               fontSize={'xl'}
               fontWeight={'semibold'}
               fontFamily={"Fira Code"}

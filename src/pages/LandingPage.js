@@ -5,7 +5,6 @@ import ContainerPosts from "../components/ContainerPosts";
 function LandingPage(){
     return (
         <Flex direction={"row"} w={"full"}>
-            {/* <TabContents/> */}
             <CategorySidebar />
             <ContainerPosts />
         </Flex>
