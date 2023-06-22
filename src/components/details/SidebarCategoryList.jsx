@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Text, Divider } from '@chakra-ui/react';
 
 function SidebarCategoryList({ categories }) {
   return categories.map((item, index) => {
@@ -6,7 +6,7 @@ function SidebarCategoryList({ categories }) {
       <>
         <Text fontSize={'lg'}>{item}</Text>
         {index < categories.length - 1 && (
-          <Box bg={'dividerSidebar'} h={'1px'} w={'95%'} />
+          <Divider/>
         )}
       </>
     );

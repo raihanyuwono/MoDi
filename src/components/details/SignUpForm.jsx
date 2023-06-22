@@ -22,6 +22,12 @@ function SignUpForm() {
         icon={<FiMail color={"primaryTextIcon"} />}
       />
       <CustomInputForm
+        id="phone"
+        type="tel"
+        placeholder="Phone"
+        icon={<FiPhone color={"primaryTextIcon"} />}
+      />
+      <CustomInputForm
         id="password"
         type="password"
         placeholder="Password"
@@ -30,18 +36,12 @@ function SignUpForm() {
         icon={<FiUnlock color={"primaryTextIcon"} />}
       />
       <CustomInputForm
-        id="password-confirm"
+        id="confirm-password"
         type="password"
         placeholder="Re-type Password"
         pass={showPassConfirm}
         onPass={() => setShowPassConfirm(!showPassConfirm)}
         icon={<FiUnlock color={"primaryTextIcon"} />}
-      />
-      <CustomInputForm
-        id="phone"
-        type="tel"
-        placeholder="Phone"
-        icon={<FiPhone color={"primaryTextIcon"} />}
       />
     </>
   );

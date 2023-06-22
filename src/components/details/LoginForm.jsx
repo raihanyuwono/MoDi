@@ -7,7 +7,7 @@ function LoginForm() {
       <CustomInputForm
         id="username"
         type="text"
-        placeholder="Username"
+        placeholder="Username/Email/Phone"
         icon={<FiUser color={"primaryTextIcon"} />}
       />
       <CustomInputForm

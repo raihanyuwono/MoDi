@@ -4,7 +4,6 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
-import { color } from '../../themes/Themes';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { HiHeart } from 'react-icons/hi';
 

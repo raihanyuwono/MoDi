@@ -1,24 +1,39 @@
 import { Flex, Text } from '@chakra-ui/react';
 import SidebarCategoryList from './details/SidebarCategoryList';
 
-const categories = ['Home', 'News', 'Games', 'Sports'];
+const categories = ['Home', 'News', 'Games', 'Movies', 'Sports', 'Hobby'];
 
 function CategorySidebar() {
   return (
     <Flex
       id="categories-sidebar"
-      minH={'calc(100vh - 4rem)'}
-      w={"16rem"}
+      h={'calc(100vh - 4rem)'}
+      w={'16rem'}
       gap={15}
-      bgColor={"sidebar"}
+      bgColor={'sidebar'}
       direction={'column'}
       alignItems={'center'}
-      pt={'2rem'}
       fontFamily={'Fira Code'}
-      boxShadow={"xl"}
+      boxShadow={'xl'}
       zIndex={1}
+      pos={'sticky'}
+      top={"4rem"}
+      bottom={0}
+      overflowY={'scroll'}
+      // textOverflow={'hidden'}
     >
-      <Text mb={'1rem'} fontSize={'2xl'} fontWeight={'semibold'}>
+      <Text
+        // mb={'1rem'}
+        py={"2rem"}
+        w={"full"}
+        fontSize={'2xl'}
+        fontWeight={'semibold'}
+        pos={'sticky'}
+        bgColor={"sidebar"}
+        top={0}
+        zIndex={1}
+        textAlign={"center"}
+      >
         Categories
       </Text>
       <SidebarCategoryList categories={categories} />

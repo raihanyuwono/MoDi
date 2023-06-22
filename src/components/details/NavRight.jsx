@@ -3,9 +3,10 @@ import { RiNotificationLine } from 'react-icons/ri';
 import { BsBookmark } from 'react-icons/bs';
 import WriteButton from './WriteButton';
 import LoginButton from './LoginButton';
+import { useSelector } from 'react-redux';
 
 function NavRight() {
-  const isLogin = false;
+  const isLogin = useSelector((state) => state.user.token);
   if (isLogin)
     return (
       <Flex direction={'row'} alignItems={'center'} gap={3}>

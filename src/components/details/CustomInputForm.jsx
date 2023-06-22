@@ -29,7 +29,8 @@ function CustomInputForm({ id, type, placeholder, icon, pass, onPass }) {
 
   return (
     <InputGroup
-      border={`1px solid ${"divider"}`}
+      border={"1px solid"}
+      borderColor={"divider"}
       borderRadius={'3rem'}
       overflow={'hidden'}
     >

@@ -1,20 +1,28 @@
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
+import { Provider } from 'react-redux';
 import App from './App';
 import NewStory from './pages/NewStory';
 import { theme } from './themes/Themes';
+import Verify from './pages/Verify';
+import NavBar from './components/NavBar';
+import { Storage } from './storage/Storage';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
 root.render(
   <BrowserRouter>
-    <ChakraProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/newstory" element={<NewStory />} />
-      </Routes>
-    </ChakraProvider>
+    <Provider store={Storage}>
+      <ChakraProvider theme={theme}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/newstory" element={<NewStory />} />
+          <Route path="/verification/:token" element={<Verify />} />
+        </Routes>
+      </ChakraProvider>
+    </Provider>
   </BrowserRouter>
 );
