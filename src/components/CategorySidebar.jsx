@@ -1,9 +1,25 @@
 import { Flex, Text } from '@chakra-ui/react';
 import SidebarCategoryList from './details/SidebarCategoryList';
-
-const categories = ['Home', 'News', 'Games', 'Movies', 'Sports', 'Hobby'];
+import axios from 'axios';
+import { useState } from 'react';
 
 function CategorySidebar() {
+
+  const [categories, setCategories] = useState([]);
+
+  async function fetchCategories() {
+    try {
+      const res = await axios.get(
+        'https://minpro-blog.purwadhikabootcamp.com/api/blog/allCategory'
+      );
+      setCategories(res.data);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  fetchCategories();
+
   return (
     <Flex
       id="categories-sidebar"
@@ -17,22 +33,20 @@ function CategorySidebar() {
       boxShadow={'xl'}
       zIndex={1}
       pos={'sticky'}
-      top={"4rem"}
+      top={'4rem'}
       bottom={0}
       overflowY={'scroll'}
-      // textOverflow={'hidden'}
     >
       <Text
-        // mb={'1rem'}
-        py={"2rem"}
-        w={"full"}
+        py={'2rem'}
+        w={'full'}
         fontSize={'2xl'}
         fontWeight={'semibold'}
         pos={'sticky'}
-        bgColor={"sidebar"}
+        bgColor={'sidebar'}
         top={0}
         zIndex={1}
-        textAlign={"center"}
+        textAlign={'center'}
       >
         Categories
       </Text>
