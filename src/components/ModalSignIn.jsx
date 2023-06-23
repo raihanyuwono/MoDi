@@ -16,9 +16,9 @@ import { useDispatch } from 'react-redux';
 import { userLogin } from '../storage/UserReducer';
 
 function whichType(username) {
-  if (username.match(/\d+/)) return "phone";
-  if (username.match(/^[\w\.]+@\w+\.\w{2,3}/)) return "email";
-  return "username";
+  if (username.match(/\d+/)) return 'phone';
+  if (username.match(/^[\w\.]+@\w+\.\w{2,3}/)) return 'email';
+  return 'username';
 }
 
 function ModalSignIn({ isOpen, onClose }) {
@@ -26,18 +26,18 @@ function ModalSignIn({ isOpen, onClose }) {
   const [btnText, setBtnText] = useState('Sign In');
   const [memberText, setMemberText] = useState('Sign Up');
   const dispatch = useDispatch();
-  
+
   async function onSignIn() {
     try {
-      const username = document.getElementById("username").value;
+      const username = document.getElementById('username').value;
       const loginType = whichType(username);
       console.log(loginType);
 
       const data = {
-        username: loginType === "username" ? username : '',
-        email: loginType === "email" ? username : '',
-        phone: loginType === "phone" ? username : '',
-        password: document.getElementById("password").value,
+        username: loginType === 'username' ? username : '',
+        email: loginType === 'email' ? username : '',
+        phone: loginType === 'phone' ? username : '',
+        password: document.getElementById('password').value,
       };
 
       const res = await axios.post(
@@ -48,8 +48,7 @@ function ModalSignIn({ isOpen, onClose }) {
       // console.log(res);
       const token = res.data.token;
       // console.log(token);
-        dispatch(userLogin(token));
-
+      dispatch(userLogin(token));
       // const userPhoto = res.data.isAccountExist.imgProfile;
     } catch (error) {
       alert(error);
