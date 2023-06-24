@@ -1,18 +1,13 @@
-import {
-  Box,
-  Flex,
-  Image,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { HiHeart } from 'react-icons/hi';
 
 function onLike() {
-    alert("Like")
+  alert('Like');
 }
 
-function onBookmark(){
-    alert("Bookmark")
+function onBookmark() {
+  alert('Bookmark');
 }
 
 function CardArticles({ articles }) {
@@ -20,7 +15,7 @@ function CardArticles({ articles }) {
     return (
       <Flex
         direction={'column'}
-        bgColor={"card"}
+        bgColor={'card'}
         borderRadius={'8px'}
         overflow={'hidden'}
         boxShadow={'md'}
@@ -31,42 +26,50 @@ function CardArticles({ articles }) {
         }}
       >
         <Box pos={'relative'}>
-          <Flex
-            direction={'column'}
+          <Box
+            w={'full'}
+            h={'40%'}
             pos={'absolute'}
-            top={'0.5rem'}
-            right={'0.5rem'}
-            fontSize={'xl'}
-            color={"primaryTextIcon"}
-            alignItems={'end'}
-            gap={1}
+            top={0}
+            bgGradient={'linear-gradient(to-b, #000000DF, #00000000)'}
           >
-            <Flex gap={1}>
-              <Text color={"primaryTextIcon"} fontSize={'md'}>
-                {40} {/* Likes */}
-              </Text>
-              <HiHeart onClick={onLike} cursor={"pointer"} />
+            <Flex
+              direction={'column'}
+              pos={'absolute'}
+              top={'0.5rem'}
+              right={'0.5rem'}
+              fontSize={'xl'}
+              color={'primaryTextIcon'}
+              alignItems={'end'}
+              gap={1}
+            >
+              <Flex gap={1}>
+                <Text color={'primaryTextIcon'} fontSize={'md'}>
+                  {item.likes}
+                </Text>
+                <HiHeart onClick={onLike} cursor={'pointer'} />
+              </Flex>
+              <BsBookmarkPlus onClick={onBookmark} cursor={'pointer'} />
             </Flex>
-            <BsBookmarkPlus onClick={onBookmark} cursor={"pointer"} />
-          </Flex>
+          </Box>
 
           <Flex
             w={'full'}
-            h={"full"}
+            h={'40%'}
             pos={'absolute'}
             bottom={0}
-            bgGradient={'linear-gradient(to-t, #000000DF, #00000044,#00000000)'}
+            bgGradient={'linear-gradient(to-t, #000000DF, #00000000)'}
             alignItems={'end'}
             justifyContent={'center'}
             py={'1.1rem'}
           >
             <Text
-              color={"primaryTextIcon"}
+              color={'primaryTextIcon'}
               fontSize={'xl'}
               fontWeight={'semibold'}
-              fontFamily={"Fira Code"}
+              fontFamily={'Fira Code'}
               noOfLines={2}
-              textAlign={"center"}
+              textAlign={'center'}
             >
               {item?.title}
             </Text>
@@ -74,7 +77,7 @@ function CardArticles({ articles }) {
 
           <Image
             w={'full'}
-            h={"32vh"}
+            h={'32vh'}
             alt="Image Error"
             src={`https://minpro-blog.purwadhikabootcamp.com/${item?.imageURL}`}
             objectFit={'cover'}
@@ -84,7 +87,7 @@ function CardArticles({ articles }) {
         <Text
           px={'10px'}
           py={'3px'}
-          h={"4.8rem"}
+          h={'4.8rem'}
           noOfLines={3}
           textAlign={'justify'}
           fontSize={'md'}
