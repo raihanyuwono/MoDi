@@ -14,6 +14,7 @@ function CardArticles({ articles }) {
   return articles.map(item => {
     return (
       <Flex
+        // Container
         direction={'column'}
         bgColor={'card'}
         borderRadius={'8px'}
@@ -25,7 +26,10 @@ function CardArticles({ articles }) {
           transition: '.3s',
         }}
       >
-        <Box pos={'relative'}>
+        <Box
+          // Upper Menu
+          pos={'relative'}
+        >
           <Box
             w={'full'}
             h={'40%'}
@@ -54,6 +58,7 @@ function CardArticles({ articles }) {
           </Box>
 
           <Flex
+            // Bottom Menu
             w={'full'}
             h={'40%'}
             pos={'absolute'}
@@ -76,6 +81,7 @@ function CardArticles({ articles }) {
           </Flex>
 
           <Image
+            // Image Content
             w={'full'}
             h={'32vh'}
             alt="Image Error"
@@ -84,7 +90,9 @@ function CardArticles({ articles }) {
             objectPosition={'center'}
           />
         </Box>
+
         <Text
+          // 3 lines of content
           px={'10px'}
           py={'3px'}
           h={'4.8rem'}

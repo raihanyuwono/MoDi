@@ -5,10 +5,11 @@ import {
   InputRightElement,
 } from '@chakra-ui/react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { useState } from 'react';
 
 function CustomInputForm({ id, type, placeholder, icon, pass, onPass }) {
+  
   function rightPassword() {
+    
     function showPassword() {
       onPass();
       if (!pass) document.getElementById(id).type = 'text';
@@ -19,9 +20,9 @@ function CustomInputForm({ id, type, placeholder, icon, pass, onPass }) {
       return (
         <InputRightElement>
           {pass ? (
-            <FiEye onClick={showPassword} />
+            <FiEye onClick={showPassword} cursor={"pointer"} />
           ) : (
-            <FiEyeOff onClick={showPassword} />
+            <FiEyeOff onClick={showPassword} cursor={"pointer"} />
           )}
         </InputRightElement>
       );

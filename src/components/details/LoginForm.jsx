@@ -1,7 +1,11 @@
 import { FiUnlock, FiUser } from 'react-icons/fi';
 import CustomInputForm from './CustomInputForm';
+import { useState } from 'react';
 
 function LoginForm() {
+
+  const [showPass, setShowPass] = useState(false);
+
   return (
     <>
       <CustomInputForm
@@ -14,6 +18,8 @@ function LoginForm() {
         id="password"
         type="password"
         placeholder="Password"
+        pass={showPass}
+        onPass={() => setShowPass(!showPass)}
         icon={<FiUnlock color={"primaryTextIcon"} />}
       />
     </>

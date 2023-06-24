@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 function ContainerPosts() {
   const [postList, setPostList] = useState([]);
 
-  async function fetchPost({categoryId = "", sortType = 'DESC', page = 1}) {
+  async function fetchPost({categoryId = "3", sortType = 'DESC', page = 1}) {
     try {
       const res = await axios.get(
         `https://minpro-blog.purwadhikabootcamp.com/api/blog?id_cat=${categoryId}&sort=${sortType}&page=${page}`
