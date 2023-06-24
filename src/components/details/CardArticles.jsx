@@ -43,7 +43,7 @@ function CardArticles({ articles }) {
           >
             <Flex gap={1}>
               <Text color={"primaryTextIcon"} fontSize={'md'}>
-                {item.likes}
+                {40} {/* Likes */}
               </Text>
               <HiHeart onClick={onLike} cursor={"pointer"} />
             </Flex>
