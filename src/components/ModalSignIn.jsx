@@ -51,7 +51,7 @@ function ModalSignIn({ isOpen, onClose }) {
       dispatch(userLogin(token));
       // const userPhoto = res.data.isAccountExist.imgProfile;
     } catch (error) {
-      alert(error);
+      alert(error.response.data.err);
     }
   }
 
