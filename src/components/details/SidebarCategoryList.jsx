@@ -1,13 +1,19 @@
 import { Text, Divider } from '@chakra-ui/react';
 
-function SidebarCategoryList({ categories }) {
-
+function SidebarCategoryList({ categories, onChangeCategory }) {
   return categories.map((item, index) => {
     return (
       <>
-        <Text fontSize={'lg'}>{item?.name}</Text>
+        <Text
+          id={item.id}
+          fontSize={'lg'}
+          cursor={'pointer'}
+          onClick={() => onChangeCategory(item.id)}
+        >
+          {item?.name}
+        </Text>
         {index < categories.length - 1 && (
-          <Divider/>
+          <Divider />
         )}
       </>
     );

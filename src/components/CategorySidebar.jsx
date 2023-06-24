@@ -1,10 +1,9 @@
 import { Flex, Text } from '@chakra-ui/react';
 import SidebarCategoryList from './details/SidebarCategoryList';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function CategorySidebar() {
-
+function CategorySidebar({onChangeCategory}) {
   const [categories, setCategories] = useState([]);
 
   async function fetchCategories() {
@@ -13,12 +12,15 @@ function CategorySidebar() {
         'https://minpro-blog.purwadhikabootcamp.com/api/blog/allCategory'
       );
       setCategories(res.data);
+      console.log("OK FetchCategories")
     } catch (error) {
-      alert(error);
+      console.log('fetchCetegories()', error);
     }
   }
 
-  fetchCategories();
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   return (
     <Flex
@@ -50,7 +52,7 @@ function CategorySidebar() {
       >
         Categories
       </Text>
-      <SidebarCategoryList categories={categories} />
+      <SidebarCategoryList categories={categories} onChangeCategory={onChangeCategory}/>
     </Flex>
   );
 }
