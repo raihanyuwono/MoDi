@@ -8,7 +8,7 @@ function SidebarCategoryList({ categories, onChangeCategory }) {
           id={item.id}
           fontSize={'lg'}
           cursor={'pointer'}
-          onClick={() => onChangeCategory(item.id)}
+          onClick={() => onChangeCategory(item)}
         >
           {item?.name}
         </Text>

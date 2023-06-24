@@ -4,14 +4,19 @@ import ContainerPosts from '../components/ContainerPosts';
 import CarouselNews from '../components/CarouselNews';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import HeaderCategory from '../components/details/HeaderCategory';
 
 function LandingPage() {
   const [postList, setPostList] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState({
+    id: 0,
+    name: "Home",
+  });
 
   async function fetchPost({ categoryId = '1', sortType = 'DESC', page = 1 }) {
     try {
       const res = await axios.get(
-        `https://minpro-blog.purwadhikabootcamp.com/api/blog?id_cat=${categoryId}&sort=${sortType}&page=${page}`
+        `https://minpro-blog.purwadhikabootcamp.com/api/blog?id_cat=${categoryId==0 ? "" : categoryId}&sort=${sortType}&page=${page}`
       );
       const dataList = res.data.result;
       setPostList(dataList);
@@ -20,8 +25,9 @@ function LandingPage() {
     }
   }
 
-  function onChangeCategory(categoryId) {
-    fetchPost({categoryId});
+  function onChangeCategory(category) {
+    setCurrentCategory(category);
+    fetchPost({categoryId : category.id});
   }
 
   useEffect(() => {
@@ -32,6 +38,7 @@ function LandingPage() {
     <Flex direction={'row'} w={'full'}>
       <CategorySidebar onChangeCategory={onChangeCategory}/>
       <Flex direction={'column'} w={'calc(100% - 16rem)'}>
+        <HeaderCategory category={currentCategory.name}/>
         <CarouselNews />
         <ContainerPosts postList={postList} />
       </Flex>

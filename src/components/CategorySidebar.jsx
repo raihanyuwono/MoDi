@@ -3,7 +3,7 @@ import SidebarCategoryList from './details/SidebarCategoryList';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-function CategorySidebar({onChangeCategory}) {
+function CategorySidebar({ onChangeCategory }) {
   const [categories, setCategories] = useState([]);
 
   async function fetchCategories() {
@@ -11,8 +11,10 @@ function CategorySidebar({onChangeCategory}) {
       const res = await axios.get(
         'https://minpro-blog.purwadhikabootcamp.com/api/blog/allCategory'
       );
-      setCategories(res.data);
-      console.log("OK FetchCategories")
+      setCategories([
+        { id: 0, name: 'Home' }, 
+        ...res.data
+      ]);
     } catch (error) {
       console.log('fetchCetegories()', error);
     }
@@ -52,7 +54,10 @@ function CategorySidebar({onChangeCategory}) {
       >
         Categories
       </Text>
-      <SidebarCategoryList categories={categories} onChangeCategory={onChangeCategory}/>
+      <SidebarCategoryList
+        categories={categories}
+        onChangeCategory={onChangeCategory}
+      />
     </Flex>
   );
 }
