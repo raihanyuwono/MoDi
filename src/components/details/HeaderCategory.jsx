@@ -5,7 +5,7 @@ function HeaderCategory({ category }) {
     <Flex alignItems={'center'} p={5} pb={0}>
       <Box h={'1px'} m={5} bg={"#000000"} flexGrow={1} />
       <Text
-        fontSize={'4xl'}
+        fontSize={'3xl'}
         fontFamily={'JetBrains Mono'}
         fontWeight={'semibold'}
         textTransform={'uppercase'}

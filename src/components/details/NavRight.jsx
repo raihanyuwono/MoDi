@@ -1,9 +1,10 @@
-import { Avatar, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { RiNotificationLine } from 'react-icons/ri';
 import { BsBookmark } from 'react-icons/bs';
 import WriteButton from './WriteButton';
 import LoginButton from './LoginButton';
 import { useSelector } from 'react-redux';
+import UserDropdown from './UserDropdown';
 
 function NavRight() {
   const isLogin = useSelector((state) => state.user.token);
@@ -13,7 +14,7 @@ function NavRight() {
         <WriteButton />
         <BsBookmark color={"primaryTextIcon"} size={'1.4rem'} />
         <RiNotificationLine color={"primaryTextIcon"} size={'1.4rem'} />
-        <Avatar size={'sm'} />
+        <UserDropdown />
       </Flex>
     );
 

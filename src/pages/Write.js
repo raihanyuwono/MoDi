@@ -1,11 +1,11 @@
 import NavBar from "../components/NavBar";
 
-function NewStory(){
+function Write(){
     return (
         <>
-            <NavBar/>
+            Write
         </>
     );
 }
 
-export default NewStory;
+export default Write;
