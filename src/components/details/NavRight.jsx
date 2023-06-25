@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import UserDropdown from './UserDropdown';
 
 function NavRight() {
-  const isLogin = useSelector((state) => state.user.token);
+  const isLogin = useSelector((state) => state.auth.isLogin);
   if (isLogin)
     return (
       <Flex direction={'row'} alignItems={'center'} gap={3}>

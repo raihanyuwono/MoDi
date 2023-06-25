@@ -9,6 +9,7 @@ import Verify from './pages/Verify';
 import NavBar from './components/NavBar';
 import { Storage } from './storage/Storage';
 import Profile from './pages/Profile';
+import Auth from './components/Auth';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -17,13 +18,15 @@ root.render(
   <BrowserRouter>
     <Provider store={Storage}>
       <ChakraProvider theme={theme}>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/write" element={<Write />} />
-          <Route path="/verification/:token" element={<Verify />} />
-        </Routes>
+        <Auth>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/write" element={<Write />} />
+            <Route path="/verification/:token" element={<Verify />} />
+          </Routes>
+        </Auth>
       </ChakraProvider>
     </Provider>
   </BrowserRouter>

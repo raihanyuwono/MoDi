@@ -10,8 +10,11 @@ import {
 import {RiLogoutCircleRLine} from "react-icons/ri"
 import AvatarUser from './AvatarUser';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutSuccess } from '../../storage/AuthReducer';
 
 function UserDropdown() {
+  const dispatch = useDispatch();
     const navigate = useNavigate();
   return (
     <Menu>
@@ -26,7 +29,7 @@ function UserDropdown() {
             <Text fontWeight={"semibold"}>Profile</Text>
           </HStack>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => dispatch(logoutSuccess())}>
           <HStack >
             <RiLogoutCircleRLine size={"2rem"}/>
             <Spacer />

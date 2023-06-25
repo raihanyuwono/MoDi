@@ -13,7 +13,7 @@ import SignUpForm from './details/SignUpForm';
 import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { userLogin } from '../storage/UserReducer';
+import { login } from '../storage/AuthReducer';
 
 function whichType(username) {
   if (username.match(/\d+/)) return 'phone';
@@ -27,32 +27,18 @@ function ModalSignIn({ isOpen, onClose }) {
   const [memberText, setMemberText] = useState('Sign Up');
   const dispatch = useDispatch();
 
-  async function onSignIn() {
-    try {
-      const username = document.getElementById('username').value;
-      const loginType = whichType(username);
-      console.log(loginType);
+  function onSignIn() {
+    const username = document.getElementById('username').value;
+    const loginType = whichType(username);
 
-      const data = {
-        username: loginType === 'username' ? username : '',
-        email: loginType === 'email' ? username : '',
-        phone: loginType === 'phone' ? username : '',
-        password: document.getElementById('password').value,
-      };
+    const data = {
+      username: loginType === 'username' ? username : '',
+      email: loginType === 'email' ? username : '',
+      phone: loginType === 'phone' ? username : '',
+      password: document.getElementById('password').value,
+    };
 
-      const res = await axios.post(
-        'https://minpro-blog.purwadhikabootcamp.com/api/auth/login',
-        data
-      );
-
-      // console.log(res);
-      const token = res.data.token;
-      // console.log(token);
-      dispatch(userLogin(token));
-      // const userPhoto = res.data.isAccountExist.imgProfile;
-    } catch (error) {
-      alert(error.response.data.err);
-    }
+    dispatch(login(data));
   }
 
   async function onSignUp() {
@@ -70,10 +56,8 @@ function ModalSignIn({ isOpen, onClose }) {
         data
       );
 
-      // console.log(res);
       alert(res.data.message);
     } catch (error) {
-      // console.log(error)
       alert(error.response.data);
     }
   }
