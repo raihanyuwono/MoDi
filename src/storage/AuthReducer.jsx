@@ -20,7 +20,6 @@ export const AuthReducer = createSlice({
     setUser: (state, action) => {
       const { id, username, email, phone, imgProfile, role } = action.payload;
       state.user = { id, username, email, phone, imgProfile, role };
-      console.log(state.user);
     },
     loginSuccess: state => {
       state.isLogin = true;
@@ -70,6 +69,7 @@ function keepLogin() {
       }
     } catch (error) {
       console.log(error);
+      dispatch(logoutSuccess());
     }
   };
 }

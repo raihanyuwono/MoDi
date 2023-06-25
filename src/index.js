@@ -20,12 +20,7 @@ root.render(
       <ChakraProvider theme={theme}>
         <Auth>
           <NavBar />
-          <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/write" element={<Write />} />
-            <Route path="/verification/:token" element={<Verify />} />
-          </Routes>
+          <App />
         </Auth>
       </ChakraProvider>
     </Provider>

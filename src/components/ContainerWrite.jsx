@@ -6,8 +6,8 @@ function ContainerWrite() {
     <Box
       bgColor={'sidebar'}
       w={'90%'}
-      maxW={"75rem"}
-      minH={'calc(100vh - 4rem)'}
+      maxW={"65rem"}
+      h={"full"}
       mx={'auto'}
       px={12}
       py={8}
