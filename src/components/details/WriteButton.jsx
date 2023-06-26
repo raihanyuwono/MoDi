@@ -18,10 +18,6 @@ function WriteButton() {
   }
 
   async function onPublish() {
-    function onUploadProgress(event) {
-      const percentage = Math.round((100 * event.loaded) / event.total);
-      console.log(percentage);
-    }
     try {
       const data = {
         title: document.getElementById('write-title').value,
@@ -32,22 +28,14 @@ function WriteButton() {
         // url : "",
       };
       const file = document.getElementById('write-img').files[0];
-      // console.log(data, file);
 
       const dataForm = new FormData();
-     
-      const temp = new FormData();
-      for(let key in data) {
-        temp.append(key, data[key]);
-      }
 
       const dataJSON = JSON.stringify(data);
       console.log(dataJSON);
 
       dataForm.append("data", dataJSON);
       dataForm.append("file", file);
-      // console.log(dataForm);
-      // console.log(localStorage.getItem("token"));
 
       const res = await axios.post(
         'https://minpro-blog.purwadhikabootcamp.com/api/blog',
@@ -57,11 +45,11 @@ function WriteButton() {
             "Authorization" : `Bearer ${localStorage.getItem('token')}`,
             "Content-Type": "multipart/form-data",
           },
-          onUploadProgress,
         }
       );
 
       console.log(res);
+      navigate('/');
     } catch (error) {
       console.log(error);
     }

@@ -22,6 +22,12 @@ const menuItemSettings = {
 function UserDropdown() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  function onLogout(){
+    dispatch(logoutSuccess());
+    navigate('/');
+  }
+
   return (
     <Menu>
       <MenuButton>
@@ -44,7 +50,7 @@ function UserDropdown() {
         </MenuItem>
         <MenuItem
           {...menuItemSettings}
-          onClick={() => dispatch(logoutSuccess())}
+          onClick={onLogout}
         >
           <HStack>
             <RiLogoutCircleRLine size={'2rem'} />
