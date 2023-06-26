@@ -19,6 +19,7 @@ export const theme = extendTheme({
     dividerSidebar: 'linear-gradient(to right, #B5B8CF, #777777, #B5B8CF)',
     login: '#059B37',
     loginSecondary: '#06ac67',
+    inputBorder : "#C5CAE9",
   },
   components: {
     Text: {

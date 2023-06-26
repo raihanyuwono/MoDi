@@ -1,16 +1,25 @@
-import { Flex, FormControl, Image, Input, Text, Textarea } from '@chakra-ui/react';
+import {
+  Flex,
+  FormControl,
+  Image,
+  Input,
+  Select,
+  Text,
+  Textarea,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import InputTags from './InputTags';
+import { useSelector } from 'react-redux';
 
 function WriteForm() {
+  const categories = useSelector((state) => state.blog.categories);
   const [imgURL, setImgURL] = useState('');
 
   function onAddImg() {
     const [file] = document.getElementById('write-img').files;
     const imgURL = URL.createObjectURL(file);
+    console.log(imgURL);
     setImgURL(imgURL);
-    document.getElementById('write-preview-image').style.marginBottom =
-      '0.5rem';
   }
 
   return (
@@ -27,10 +36,21 @@ function WriteForm() {
           required
           placeholder={'Title...'}
           _placeholder={{ color: 'secondaryText' }}
+          focusBorderColor="lightPrimary"
         />
       </FormControl>
 
-      <InputTags id={"write-tags"}/>
+      <FormControl>
+        <Select placeholder="Category" borderColor={"lightPrimary"} focusBorderColor="lightPrimary">
+          {categories.map((item, index) => {
+            if(index > 0) return (
+              <option key={index} value={item.id}>{item.name}</option>
+            )
+          })}
+        </Select>
+      </FormControl>
+
+      <InputTags id={'write-tags'} />
 
       <FormControl>
         <Textarea
@@ -44,27 +64,32 @@ function WriteForm() {
           required
           placeholder={'Tell your story here...'}
           _placeholder={{ color: 'secondaryText' }}
+          focusBorderColor="lightPrimary"
         />
       </FormControl>
 
       <FormControl>
-        <Text mb={"0.5rem"}>Image :</Text>
+        <Flex direction={'row'} alignItems={'baseline'}>
+          <Text w={'4rem'} mb={'0.5rem'}>
+            Image :
+          </Text>
+          <Input
+            id="write-img"
+            type="file"
+            flexGrow={1}
+            variant={'unstyled'}
+            onChange={onAddImg}
+          />
+        </Flex>
         <Image
           id="write-preview-image"
           src={imgURL}
           alt={imgURL}
           w={'full'}
-          borderRadius={"10px"}
-          boxShadow={"lg"}
+          borderRadius={'10px'}
+          boxShadow={'lg'}
           objectFit={'cover'}
           objectPosition={'center'}
-        />
-        <Input
-          id="write-img"
-          type="file"
-          flexGrow={1}
-          variant={'unstyled'}
-          onChange={onAddImg}
         />
       </FormControl>
     </Flex>

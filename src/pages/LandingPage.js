@@ -17,7 +17,7 @@ function LandingPage() {
     try {
       const res = await axios.get(
         `https://minpro-blog.purwadhikabootcamp.com/api/blog?id_cat=${
-          categoryId == 0 ? '' : categoryId
+          categoryId === 0 ? '' : categoryId
         }&sort=${sortType}&page=${page}`
       );
       const dataList = res.data.result;
