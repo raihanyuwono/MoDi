@@ -53,6 +53,7 @@ function ModalSignIn({ isOpen, onClose }) {
         phone: document.getElementById('phone')?.value,
         password: document.getElementById('password')?.value,
         confirmPassword: document.getElementById('confirm-password')?.value,
+        FE_URL: "http://localhost:3000",
       };
 
       const res = await axios.post(
