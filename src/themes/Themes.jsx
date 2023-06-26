@@ -46,6 +46,7 @@ export const theme = extendTheme({
       },
       defaultProps: {
         size: 'xl',
+        fontWeight: "semibold",
       },
     },
   },

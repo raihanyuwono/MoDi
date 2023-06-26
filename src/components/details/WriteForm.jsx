@@ -18,7 +18,7 @@ function WriteForm() {
   function onAddImg() {
     const [file] = document.getElementById('write-img').files;
     const imgURL = URL.createObjectURL(file);
-    console.log(imgURL);
+    // console.log(imgURL);
     setImgURL(imgURL);
   }
 
@@ -41,7 +41,7 @@ function WriteForm() {
       </FormControl>
 
       <FormControl>
-        <Select placeholder="Category" borderColor={"lightPrimary"} focusBorderColor="lightPrimary">
+        <Select id="write-category" placeholder="Category" borderColor={"lightPrimary"} focusBorderColor="lightPrimary">
           {categories.map((item, index) => {
             if(index > 0) return (
               <option key={index} value={item.id}>{item.name}</option>

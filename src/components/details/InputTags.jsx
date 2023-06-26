@@ -1,14 +1,15 @@
-import { Flex, FormControl, Input, Text } from '@chakra-ui/react';
+import { Flex, FormControl, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import CardTag from './CardTag';
 
-function InputTags(id) {
+function InputTags({id}) {
   const [tags, setTags] = useState([]);
 
   function removeTag(index) {
     const temp = [...tags];
     temp.splice(index, 1);
     setTags(temp);
+    sessionStorage.setItem("tags", temp);
   }
 
   function onAddTags(data) {
@@ -18,10 +19,13 @@ function InputTags(id) {
 
     const tag = data.value;
     if (!tag.trim()) return clearValue();
-    if (tags.findIndex(item => item === tag.trim()) === -1)
-      setTags([...tags, tag.trim()]);
+    if (tags.findIndex(item => item === tag.trim()) === -1) {
+      const temp = [...tags, tag.trim()];
+      setTags(temp);
+      sessionStorage.setItem("tags", temp);
+    }
     clearValue();
-    console.log(tags);
+    // console.log(tags);
   }
 
   function onKeyDownHandle(data) {

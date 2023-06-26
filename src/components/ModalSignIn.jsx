@@ -14,6 +14,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../storage/AuthReducer';
+import { useNavigate } from 'react-router-dom';
 
 function whichType(username) {
   if (username.match(/\d+/)) return 'phone';
@@ -26,6 +27,7 @@ function ModalSignIn({ isOpen, onClose }) {
   const [btnText, setBtnText] = useState('Sign In');
   const [memberText, setMemberText] = useState('Sign Up');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function onSignIn() {
     const username = document.getElementById('username').value;
@@ -39,6 +41,8 @@ function ModalSignIn({ isOpen, onClose }) {
     };
 
     dispatch(login(data));
+    navigate('/');
+    onClose();
   }
 
   async function onSignUp() {

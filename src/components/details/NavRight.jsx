@@ -20,7 +20,7 @@ function NavRight() {
 
   return (
     <Flex direction={'row'} alignItems={'center'} gap={2}>
-      <WriteButton />
+      <WriteButton isWrite={true}/>
       <LoginButton />
     </Flex>
   );
