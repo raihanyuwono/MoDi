@@ -12,14 +12,17 @@ import InputTags from './InputTags';
 import { useSelector } from 'react-redux';
 
 function WriteForm() {
-  const categories = useSelector((state) => state.blog.categories);
+  const categories = useSelector(state => state.blog.categories);
   const [imgURL, setImgURL] = useState('');
 
   function onAddImg() {
-    const [file] = document.getElementById('write-img').files;
-    const imgURL = URL.createObjectURL(file);
-    // console.log(imgURL);
-    setImgURL(imgURL);
+    try{
+      const [file] = document.getElementById('write-img').files;
+      const imgURL = URL.createObjectURL(file);
+      setImgURL(imgURL);
+    } catch(error){
+      console.log(error);
+    }
   }
 
   return (
@@ -41,11 +44,20 @@ function WriteForm() {
       </FormControl>
 
       <FormControl>
-        <Select id="write-category" placeholder="Category" borderColor={"lightPrimary"} focusBorderColor="lightPrimary">
+        <Select
+          id="write-category"
+          placeholder="Category"
+          borderColor={'lightPrimary'}
+          focusBorderColor="lightPrimary"
+          color={'primaryText'}
+        >
           {categories.map((item, index) => {
-            if(index > 0) return (
-              <option key={index} value={item.id}>{item.name}</option>
-            )
+            if (index > 0)
+              return (
+                <option key={index} value={item.id}>
+                  {item.name}
+                </option>
+              );
           })}
         </Select>
       </FormControl>
