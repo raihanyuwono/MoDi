@@ -13,7 +13,10 @@ function WriteButton() {
   const navigate = useNavigate();
 
   function navToWrite() {
-    if (isLogin) return navigate('/write');
+    if (isLogin) {
+      sessionStorage.removeItem("tags");
+      return navigate('/write');
+    }
     onOpen();
   }
 
