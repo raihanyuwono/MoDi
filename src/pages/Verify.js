@@ -1,35 +1,17 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
-import axios from 'axios';
+import { Button, Flex, Text, useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-
+import { verify } from '../api/UserApi';
 
 function Verify() {
-  
   const navigate = useNavigate();
-  
+  const toast = useToast();
+
   async function verification() {
-    try {
-      const url = window.location.href.split('/');
-      const token = url[url.length - 1];
-  
-      // console.log("URL", url)
-      // console.log("TOKEN", token);
-  
-      const res = await axios.patch(
-        'https://minpro-blog.purwadhikabootcamp.com/api/auth/verify',
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-  
-      alert(res.data.message);
-      navigate("/");
-    } catch (error) {
-      alert(error.response?.data);
-    }
+    const url = window.location.href.split('/');
+    const token = url[url.length - 1];
+
+    const status = await verify(toast, token);
+    status && navigate('/');
   }
 
   return (
@@ -45,11 +27,11 @@ function Verify() {
         bgColor={'sidebar'}
         h={'35vh'}
         w={'30vw'}
-        minW={"16rem"}
+        minW={'16rem'}
         gap={2}
         alignItems={'center'}
         justifyContent={'center'}
-        borderRadius={"10px"}
+        borderRadius={'10px'}
       >
         <Text textAlign={'center'}>
           Click button on the bottom to verify your account

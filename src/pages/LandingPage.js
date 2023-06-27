@@ -10,16 +10,24 @@ function LandingPage() {
   const [postList, setPostList] = useState([]);
   const [currentCategory, setCurrentCategory] = useState({
     id: 0,
-    name: 'Home',
+    name: 'Popular',
   });
 
   async function fetchPost({ categoryId = 0, sortType = 'DESC', page = 1 }) {
     try {
-      const res = await axios.get(
-        `https://minpro-blog.purwadhikabootcamp.com/api/blog?id_cat=${
-          categoryId === 0 ? '' : categoryId
-        }&sort=${sortType}&page=${page}`
-      );
+      let res;
+      if (categoryId === 0) {
+        res = await axios.get(
+          `https://minpro-blog.purwadhikabootcamp.com/api/blog/pagFav?orderBy=total_fav&sort=${sortType}&page=${page}`
+        );
+      } else {
+        res = await axios.get(
+          `https://minpro-blog.purwadhikabootcamp.com/api/blog?id_cat=${
+            categoryId === 0 ? '' : categoryId
+          }&sort=${sortType}&page=${page}`
+        );
+      }
+      console.log(`Category ${categoryId}`,res.data.result);
       const dataList = res.data.result;
       setPostList(dataList);
     } catch (error) {
@@ -34,7 +42,7 @@ function LandingPage() {
 
   useEffect(() => {
     fetchPost({});
-  }, [setPostList]);
+  }, []);
 
   return (
     <Flex direction={'row'} w={'full'}>

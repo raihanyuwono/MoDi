@@ -16,9 +16,10 @@ function CategorySidebar({ onChangeCategory }) {
         'https://minpro-blog.purwadhikabootcamp.com/api/blog/allCategory'
       );
       dispatch(setCategory([
-        { id: 0, name: 'Home' }, 
-        ...res.data
+        { id: 0, name: 'Popular' }, 
+        ...res.data,
       ]))
+      console.log("Categories")
     } catch (error) {
       console.log('fetchCetegories()', error);
     }

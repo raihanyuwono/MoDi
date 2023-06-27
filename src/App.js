@@ -5,6 +5,7 @@ import Profile from './pages/Profile';
 import Write from './pages/Write';
 import Verify from './pages/Verify';
 import { Route, Routes } from 'react-router-dom';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/write" element={<Write />} />
         <Route path="/verification/:token" element={<Verify />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
     </Box>
   );
