@@ -150,15 +150,15 @@ async function changePhone(toast, phones) {
   phones = {
     ...phones,
     FE_URL,
-  }
+  };
   try {
     const res = await axios.patch(
       `${API_BASE_URL}/api/auth/changePhone`,
       phones,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        }
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       }
     );
     console.log(res);
@@ -172,15 +172,15 @@ async function changeEmail(toast, emails) {
   emails = {
     ...emails,
     FE_URL,
-  }
+  };
   try {
     const res = await axios.patch(
       `${API_BASE_URL}/api/auth/changeEmail`,
       emails,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        }
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       }
     );
     console.log(res);
@@ -189,11 +189,29 @@ async function changeEmail(toast, emails) {
   }
 }
 
+async function changePhotoProfile() {
+  try {
+
+    const res = axios.post(
+      `${API_BASE_URL}/api/profile/single-uploaded`,
+      {
+        file : "",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      }
+    );
+  } catch (error) {}
+}
+
 export {
   register,
   verify,
   forgotPass,
   resetPassword,
+  
   changePassword,
   changeUsername,
   changePhone,

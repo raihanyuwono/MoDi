@@ -14,11 +14,9 @@ function Profile() {
         mx={'auto'}
         bgColor={'sidebar'}
         justifyContent={'center'}
-        alignItems={'flex-start'}
+        alignItems={'center'}
       >
-        <ContainerBookmark flexGrow={2} />
-        <Divider orientation="vertical" h={'80%'} bgColor={'divider'} alignSelf={"center"} />
-        <ContainerProfile flexGrow={1} />
+        <ContainerProfile />
       </Flex>
     </>
   );
