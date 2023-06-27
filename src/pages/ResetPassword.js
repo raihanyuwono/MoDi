@@ -16,8 +16,7 @@ function ResetPassword() {
     const url = window.location.href.split('/');
     const token = url[url.length - 1];
 
-    const status = await resetPass(toast, {
-      token,
+    const status = await resetPass(toast, token, {
       password: document.getElementById('reset-password').value,
       confirmPassword: document.getElementById('reset-confirm-password').value,
     });

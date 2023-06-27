@@ -76,14 +76,12 @@ async function forgotPass(toast, email) {
   }
 }
 
-async function resetPassword(toast, { token, password, confirmPassword }) {
+async function resetPassword(toast, token, passwords) {
+  // { password, confirmPassword }
   try {
     const res = await axios.patch(
       `${API_BASE_URL}/api/auth/resetPass`,
-      {
-        password,
-        confirmPassword,
-      },
+      passwords,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -107,4 +105,97 @@ async function resetPassword(toast, { token, password, confirmPassword }) {
   }
 }
 
-export { register, verify, forgotPass, resetPassword };
+async function changePassword(toast, passwords) {
+  // { currentPassword, password, confirmPassword })
+  try {
+    const res = await axios.patch(
+      `${API_BASE_URL}/api/auth/changePass`,
+      passwords,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function changeUsername(toast, usernames) {
+  // {currentUsername, newUsername}
+  usernames = {
+    ...usernames,
+    FE_URL,
+  };
+  try {
+    const res = await axios.patch(
+      `${API_BASE_URL}/api/auth/changeUsername`,
+      usernames,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function changePhone(toast, phones) {
+  // {currentPhone, newPhone}
+  phones = {
+    ...phones,
+    FE_URL,
+  }
+  try {
+    const res = await axios.patch(
+      `${API_BASE_URL}/api/auth/changePhone`,
+      phones,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        }
+      }
+    );
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function changeEmail(toast, emails) {
+  // {currentEmail, newEmail}
+  emails = {
+    ...emails,
+    FE_URL,
+  }
+  try {
+    const res = await axios.patch(
+      `${API_BASE_URL}/api/auth/changeEmail`,
+      emails,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        }
+      }
+    );
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export {
+  register,
+  verify,
+  forgotPass,
+  resetPassword,
+  changePassword,
+  changeUsername,
+  changePhone,
+  changeEmail,
+};
