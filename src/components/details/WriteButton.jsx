@@ -49,6 +49,7 @@ function WriteButton() {
       );
 
       console.log(res);
+      sessionStorage.removeItem("tags");
       navigate('/');
     } catch (error) {
       console.log(error);
