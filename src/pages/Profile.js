@@ -15,7 +15,8 @@ function Profile() {
         px={3}
         bgColor={'sidebar'}
         justifyContent={'center'}
-        alignItems={'center'}
+        alignItems={'flex-start'}
+        py={"3rem"}
       >
         <ContainerProfile />
       </Flex>

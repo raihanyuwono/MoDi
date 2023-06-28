@@ -225,7 +225,6 @@ async function changePhotoProfile(toast, file) {
   try {
     const data = new FormData();
     data.append('file', file);
-    console.log('OK');
     const res = await axios.post(
       `${API_BASE_URL}/api/profile/single-uploaded`,
       data,
@@ -233,10 +232,9 @@ async function changePhotoProfile(toast, file) {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-      }
+      },
     );
 
-    console.log(res);
     Toast(toast, {
       title: "Photo Profile has been changed",
       status: res.status,

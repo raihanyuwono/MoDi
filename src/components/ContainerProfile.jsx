@@ -19,7 +19,7 @@ function ContainerProfile() {
   return (
     <Flex
       bgColor={'primary'}
-      h={'60vh'}
+      h={'17rem'}
       w={'60%'}
       minW={'fit-content'}
       px={5}

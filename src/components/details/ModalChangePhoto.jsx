@@ -34,8 +34,13 @@ function ModalChangePhoto({ isOpen, onClose }) {
   async function onChangeImg() {
     const file = document.getElementById('edit-img').files[0];
     const isSuccess = await changePhotoProfile(toast, file);
-    
-    isSuccess && onClose();
+    if(isSuccess){
+      onClose();
+      setTimeout(()=>{
+        document.location.href = '/profile';
+
+      }, 250);
+    };
   }
 
   return (

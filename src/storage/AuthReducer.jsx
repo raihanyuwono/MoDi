@@ -75,6 +75,11 @@ function keepLogin() {
 }
 
 export { login, keepLogin };
-export const { loginSuccess, logoutSuccess, setUser, keepLoginSuccess } =
-  AuthReducer.actions;
+export const {
+  loginSuccess,
+  logoutSuccess,
+  setUser,
+  keepLoginSuccess,
+  clearImgSuccess,
+} = AuthReducer.actions;
 export default AuthReducer.reducer;
