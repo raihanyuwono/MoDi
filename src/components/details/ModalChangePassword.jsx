@@ -32,9 +32,12 @@ function ModalChangePassword({ isOpen, onClose }) {
       confirmPassword: document.getElementById('edit-confirm-password').value,
     };
 
-    await changePassword(toast, data);
-    dispatch(logoutSuccess());
-    navigate('/');
+    const isSuccess = await changePassword(toast, data);
+
+    if (isSuccess) {
+      dispatch(logoutSuccess());
+      navigate('/');
+    }
   }
 
   return (

@@ -117,17 +117,17 @@ async function changePassword(toast, passwords) {
         },
       }
     );
-    console.log(res);
     Toast(toast, {
       title: res.data.message,
       status: res.status,
     });
+    return true;
   } catch (error) {
-    console.log(error);
     Toast(toast, {
-      title: error.response.data,
+      title: error.response.data.err,
       status: error.response.status,
     });
+    return false;
   }
 }
 
@@ -221,21 +221,38 @@ async function changeEmail(toast, emails) {
   }
 }
 
-async function changePhotoProfile() {
+async function changePhotoProfile(toast, file) {
   try {
-
-    const res = axios.post(
+    const data = new FormData();
+    data.append('file', file);
+    console.log('OK');
+    const res = await axios.post(
       `${API_BASE_URL}/api/profile/single-uploaded`,
-      {
-        file : "",
-      },
+      data,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
-        }
+        },
       }
     );
-  } catch (error) {}
+
+    console.log(res);
+    Toast(toast, {
+      title: "Photo Profile has been changed",
+      status: res.status,
+    });
+    return true;
+  } catch (error) {
+    Toast(toast, {
+      title: error.response.data.err,
+      status: error.response.status,
+    });
+    return false;
+  }
+}
+
+function getImage(imgURL){
+  return `https://minpro-blog.purwadhikabootcamp.com/${imgURL}`;
 }
 
 export {
@@ -243,9 +260,10 @@ export {
   verify,
   forgotPass,
   resetPassword,
-  
   changePassword,
   changeUsername,
   changePhone,
   changeEmail,
+  changePhotoProfile,
+  getImage
 };
