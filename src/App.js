@@ -9,12 +9,13 @@ import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
-    <Box bgColor={'lightPrimary'} minH={'calc(100vh - 4rem)'} h={"auto"}>
+    <Box bgColor={'lightPrimary'} minH={'calc(100vh - 4rem)'} w={'full'} h={'auto'}>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/write" element={<Write />} />
         <Route path="/verification/:token" element={<Verify />} />
+        <Route path="/verification-change-email/:token" element={<Verify />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
     </Box>

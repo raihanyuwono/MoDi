@@ -10,7 +10,9 @@ function Auth({children}){
         dispatch(keepLogin());
     }, [dispatch]);
 
-    return <>{children}</>
+    return <>
+        {children}
+    </>
 }
 
 export default Auth;

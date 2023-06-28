@@ -1,5 +1,4 @@
-import { Box, Divider, Flex } from '@chakra-ui/react';
-import ContainerBookmark from '../components/ContainerBookmark';
+import { Flex } from '@chakra-ui/react';
 import ContainerProfile from '../components/ContainerProfile';
 
 function Profile() {
@@ -8,10 +7,12 @@ function Profile() {
       <Flex
         direction={'row'}
         maxW={'75rem'}
-        w={"90%"}
+        w={'90%'}
+        minW={'fit-content'}
         h={'full'}
-        minH={"calc(100vh - 4rem)"}
+        minH={'calc(100vh - 4rem)'}
         mx={'auto'}
+        px={3}
         bgColor={'sidebar'}
         justifyContent={'center'}
         alignItems={'center'}

@@ -118,8 +118,16 @@ async function changePassword(toast, passwords) {
       }
     );
     console.log(res);
+    Toast(toast, {
+      title: res.data.message,
+      status: res.status,
+    });
   } catch (error) {
     console.log(error);
+    Toast(toast, {
+      title: error.response.data,
+      status: error.response.status,
+    });
   }
 }
 
@@ -140,8 +148,16 @@ async function changeUsername(toast, usernames) {
       }
     );
     console.log(res);
+    Toast(toast, {
+      title: res.data.message,
+      status: res.status,
+    });
   } catch (error) {
     console.log(error);
+    Toast(toast, {
+      title: error.response.data,
+      status: error.response.status,
+    });
   }
 }
 
@@ -162,8 +178,16 @@ async function changePhone(toast, phones) {
       }
     );
     console.log(res);
+    Toast(toast, {
+      title: res.data.message,
+      status: res.status,
+    });
   } catch (error) {
     console.log(error);
+    Toast(toast, {
+      title: error.response.data,
+      status: error.response.status,
+    });
   }
 }
 
@@ -184,8 +208,16 @@ async function changeEmail(toast, emails) {
       }
     );
     console.log(res);
+    Toast(toast, {
+      title: res.data.message,
+      status: res.status,
+    });
   } catch (error) {
     console.log(error);
+    Toast(toast, {
+      title: error.response.data,
+      status: error.response.status,
+    });
   }
 }
 

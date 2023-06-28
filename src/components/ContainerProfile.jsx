@@ -1,5 +1,5 @@
 import { Avatar, Flex, Grid } from '@chakra-ui/react';
-import { FiMail, FiPhone, FiUser } from 'react-icons/fi';
+import { FiMail, FiPhone, FiUnlock, FiUser } from 'react-icons/fi';
 import UserInfo from './details/UserInfo';
 
 function ContainerProfile() {
@@ -8,6 +8,7 @@ function ContainerProfile() {
       bgColor={'primary'}
       h={'60vh'}
       w={'60%'}
+      minW={"fit-content"}
       px={5}
       borderRadius={'10px'}
       direction={'row'}
@@ -40,6 +41,12 @@ function ContainerProfile() {
           keyProp={'phone'}
           type="tel"
           placeholder={'Phone'}
+        />
+        <UserInfo
+          logo={<FiUnlock />}
+          keyProp={'password'}
+          type="password"
+          placeholder={'Password'}
         />
       </Grid>
     </Flex>

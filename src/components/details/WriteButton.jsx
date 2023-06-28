@@ -14,10 +14,20 @@ function WriteButton() {
 
   function navToWrite() {
     if (isLogin) {
-      sessionStorage.removeItem("tags");
+      sessionStorage.removeItem('tags');
       return navigate('/write');
     }
     onOpen();
+  }
+
+  function validate(data) {
+    const errors = [];
+    for (let key in data){
+      if (data[key] === '' || data[key] === null || data[key] === undefined) {
+        errors.push(key);
+      }
+    }
+    return errors.length > 0 && `${errors.join(', ')} ${errors.length > 1 ? "are" : "is"} empty`;
   }
 
   async function onPublish() {
@@ -26,33 +36,37 @@ function WriteButton() {
         title: document.getElementById('write-title').value,
         content: document.getElementById('write-content').value,
         CategoryId: document.getElementById('write-category').value,
-        keywords: sessionStorage.getItem('tags').split(',').join(' '),
+        keywords: sessionStorage.getItem('tags')?.split(',').join(' '),
         // country: "USA",
         // url : "",
       };
       const file = document.getElementById('write-img').files[0];
+      console.log(data);
+      
+      const isValid = validate(data);
+      console.log(isValid);
+      if(isValid) throw new Error(isValid);
 
       const dataForm = new FormData();
 
       const dataJSON = JSON.stringify(data);
-      console.log(dataJSON);
 
-      dataForm.append("data", dataJSON);
-      dataForm.append("file", file);
+      dataForm.append('data', dataJSON);
+      dataForm.append('file', file);
 
       const res = await axios.post(
         'https://minpro-blog.purwadhikabootcamp.com/api/blog',
         dataForm,
         {
           headers: {
-            "Authorization" : `Bearer ${localStorage.getItem('token')}`,
-            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
 
       console.log(res);
-      sessionStorage.removeItem("tags");
+      sessionStorage.removeItem('tags');
       navigate('/');
     } catch (error) {
       console.log(error);
