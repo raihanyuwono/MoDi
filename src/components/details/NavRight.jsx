@@ -1,5 +1,4 @@
 import { Flex } from '@chakra-ui/react';
-import { RiNotificationLine } from 'react-icons/ri';
 import { BsBookmark } from 'react-icons/bs';
 import WriteButton from './WriteButton';
 import LoginButton from './LoginButton';

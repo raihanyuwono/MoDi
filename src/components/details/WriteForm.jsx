@@ -15,21 +15,21 @@ function WriteForm() {
   const [imgURL, setImgURL] = useState('');
   const [categories, SetCategories] = useState([]);
 
-  async function fetchCategory(){
+  async function fetchCategory() {
     const data = await getCategory();
     SetCategories(data);
   }
 
   useEffect(() => {
     fetchCategory();
-  }, [])
+  }, []);
 
   function onAddImg() {
-    try{
+    try {
       const [file] = document.getElementById('write-img').files;
       const imgURL = URL.createObjectURL(file);
       setImgURL(imgURL);
-    } catch(error){
+    } catch (error) {
       console.log(error);
     }
   }
@@ -61,12 +61,11 @@ function WriteForm() {
           color={'primaryText'}
         >
           {categories.map((item, index) => {
-            if (index > 0)
-              return (
-                <option key={index} value={item.id}>
-                  {item.name}
-                </option>
-              );
+            return (
+              <option key={index} value={item.id}>
+                {item.name}
+              </option>
+            );
           })}
         </Select>
       </FormControl>
