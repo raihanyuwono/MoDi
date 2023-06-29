@@ -1,16 +1,16 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import { BsBookmarkPlus } from 'react-icons/bs';
 import { HiHeart } from 'react-icons/hi';
-
-function onLike() {
-  alert('Like');
-}
-
-function onBookmark() {
-  alert('Bookmark');
-}
+import { useNavigate } from 'react-router-dom';
 
 function CardArticles({ articles }) {
+  
+  const navigate = useNavigate();
+  
+  function toRead(item){
+    sessionStorage.setItem('read', JSON.stringify(item));
+    navigate('/read');
+  }
+  
   return articles.map(item => {
     return (
       <Flex
@@ -21,6 +21,8 @@ function CardArticles({ articles }) {
         overflow={'hidden'}
         boxShadow={'md'}
         transition={'.2s'}
+        onClick={() => toRead(item)}
+        cursor={'pointer'}
         _hover={{
           transform: 'translate(0, -0.65rem)',
           transition: '.3s',
@@ -49,11 +51,10 @@ function CardArticles({ articles }) {
             >
               <Flex gap={1}>
                 <Text color={'primaryTextIcon'} fontSize={'md'}>
-                  {item.likes}
+                  {item.total_fav}
                 </Text>
-                <HiHeart onClick={onLike} cursor={'pointer'} />
+                <HiHeart />
               </Flex>
-              <BsBookmarkPlus onClick={onBookmark} cursor={'pointer'} />
             </Flex>
           </Box>
 

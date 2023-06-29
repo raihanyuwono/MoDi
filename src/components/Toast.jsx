@@ -15,7 +15,7 @@ function Toast(toast, { title, status }) {
   return toast({
     title: title,
     status: getStatus(status),
-    duration: 5000,
+    duration: 4000,
     isClosable: true,
     position: 'top',
   });

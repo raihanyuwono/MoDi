@@ -5,12 +5,16 @@ import ContainerPosts from '../components/ContainerPosts';
 import CarouselNews from '../components/CarouselNews';
 import HeaderCategory from '../components/details/HeaderCategory';
 import { getLatest } from '../api/BlogApi';
+import Pagiantaion from '../components/Pagination';
 
 function LandingPage({
   postList,
   fetchPopular,
   currentCategory,
   setCurrentCategory,
+  page,
+  setPage,
+  resetPage,
 }) {
   const [latestList, setLatestList] = useState([]);
   const [currentSortPop, setCurrentSortPop] = useState('DESC');
@@ -20,17 +24,25 @@ function LandingPage({
     setLatestList(data);
   }
 
-  function onChangeCategory(category) {
+  async function onChangeCategory(category) {
     setCurrentCategory(category);
-    fetchLatest({ categoryId: category.id > 0 ? category.id : '' });
-    fetchPopular({ categoryId: category.id > 0 ? category.id : '' });
+    await fetchLatest({ categoryId: category.id > 0 ? category.id : '' });
+    const dataPop = await fetchPopular({
+      categoryId: category.id > 0 ? category.id : '',
+    });
     setCurrentSortPop('DESC');
+    resetPage(dataPop.page);
   }
-  
-  function onSortPop(){
+
+  function onSortPop() {
     const sortType = document.getElementById('sort-popular').value;
     setCurrentSortPop(sortType);
     fetchPopular({ sortType });
+  }
+
+  async function changePage(curPage) {
+    const data = await fetchPopular({ page: curPage });
+    setPage({ current: curPage, last: data.page });
   }
 
   useEffect(() => {
@@ -40,9 +52,9 @@ function LandingPage({
   return (
     <Flex direction={'row'} w={'full'}>
       <CategorySidebar onChangeCategory={onChangeCategory} />
-      <Flex direction={'column'} w={'calc(100% - 16rem)'} gap={5}>
+      <Flex direction={'column'} w={'calc(100% - 16rem)'} gap={5} py={5}>
         <HeaderCategory category={currentCategory.name} />
-        
+
         <Flex direction={'row'} px={5} alignItems={'center'} gap={2}>
           <Box bgColor={'#000000'} w={2} h={'px'} flexWrap={'wrap'} />
           <Text fontSize={'1.5rem'}>Latest</Text>
@@ -68,6 +80,8 @@ function LandingPage({
           </Select>
         </Flex>
         <ContainerPosts postList={postList} />
+
+        <Pagiantaion page={page} changePage={changePage} />
       </Flex>
     </Flex>
   );

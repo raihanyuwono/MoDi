@@ -8,8 +8,17 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { getImage } from '../../api/UserApi';
+import { useNavigate } from 'react-router-dom';
 
 function CardCarousel({ item }) {
+
+  const navigate = useNavigate();
+  
+  function toRead(item){
+    sessionStorage.setItem('read', JSON.stringify(item));
+    navigate('/read');
+  }
+
   return (
     <Flex
       // Container
@@ -19,6 +28,7 @@ function CardCarousel({ item }) {
       overflow={'hidden'}
       role="group"
       cursor={'pointer'}
+      onClick={() => toRead(item)}
     >
       <Box pos={'relative'} h={'full'}>
         <Box

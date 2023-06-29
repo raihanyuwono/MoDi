@@ -9,9 +9,13 @@ import ResetPassword from './pages/ResetPassword';
 import NavBar from './components/NavBar';
 import { useState, useEffect } from 'react';
 import { getPopular } from './api/BlogApi';
+import Read from './pages/Read';
+import Footer from './components/Footer';
+import Favourite from './pages/Favourite';
 
 function App() {
   const [postList, setPostList] = useState([]);
+  const [page, setPage] = useState({ current: 1, last: 2 });
   const [currentSearch, setCurrentSearch] = useState('');
   const [currentCategory, setCurrentCategory] = useState({
     id: 0,
@@ -25,16 +29,27 @@ function App() {
       searchKey: currentSearch,
     };
     const data = await getPopular(newProp);
-    setPostList(data);
+    setPostList(data.result);
+    return data;
   }
 
-  function search(keySearch) {
+  function resetPage(lastPage) {
+    setPage({
+      current: 1,
+      last: lastPage,
+    });
+  }
+
+  async function search(keySearch) {
     setCurrentSearch(keySearch);
-    fetchPopular({searchkey: keySearch});
+    const data = await fetchPopular({ searchkey: keySearch });
+    resetPage(data.page);
   }
 
   useEffect(() => {
-    fetchPopular({});
+    const data = fetchPopular({});
+    const temp = { current: 1, last: data.page } 
+    setPage(temp);
   }, []);
 
   return (
@@ -55,11 +70,16 @@ function App() {
                 fetchPopular={fetchPopular}
                 currentCategory={currentCategory}
                 setCurrentCategory={setCurrentCategory}
+                page={page}
+                setPage={setPage}
+                resetPage={resetPage}
               />
             }
           />
           <Route path="/profile" element={<Profile />} />
           <Route path="/write" element={<Write />} />
+          <Route path="/read" element={<Read />} />
+          <Route path="/bookmark" element={<Favourite />} />
           <Route path="/verification/:token" element={<Verify />} />
           <Route
             path="/verification-change-email/:token"
@@ -67,6 +87,7 @@ function App() {
           />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Routes>
+        <Footer/>
       </Box>
     </>
   );

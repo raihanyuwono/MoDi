@@ -1,8 +1,7 @@
 import { HStack, Text } from '@chakra-ui/react';
 import { IoMdCloseCircle } from 'react-icons/io';
 
-function CardTag({ tags, removeTag }) {
-  
+function CardTag({ tags, removeTag = null }) {
   return tags.map((item, index) => {
     return (
       <HStack
@@ -13,7 +12,12 @@ function CardTag({ tags, removeTag }) {
         borderRadius={'10px'}
       >
         <Text>{item}</Text>
-        <IoMdCloseCircle cursor={'pointer'} onClick={() => removeTag(index)} />
+        {removeTag && (
+          <IoMdCloseCircle
+            cursor={'pointer'}
+            onClick={() => removeTag(index)}
+          />
+        )}
       </HStack>
     );
   });

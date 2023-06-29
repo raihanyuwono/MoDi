@@ -58,10 +58,6 @@ function UserInfo({ logo, keyProp, type, placeholder }) {
   }
 
   function onEdit() {
-    // if (!isEdit) return setEdit(true);
-    // const value = document.getElementById(`edit-${keyProp}`).value;
-    // if (value === '') return setEdit(false);
-    // onChangeContent();
     setEdit(!isEdit);
   }
 
