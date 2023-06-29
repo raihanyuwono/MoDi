@@ -4,7 +4,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
 import App from './App';
 import { theme } from './themes/Themes';
-import NavBar from './components/NavBar';
 import { Storage } from './storage/Storage';
 import Auth from './components/Auth';
 
@@ -16,7 +15,6 @@ root.render(
     <Provider store={Storage}>
       <ChakraProvider theme={theme}>
         <Auth>
-          <NavBar />
           <App />
         </Auth>
       </ChakraProvider>

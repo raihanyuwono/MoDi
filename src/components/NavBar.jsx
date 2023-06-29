@@ -3,12 +3,12 @@ import NavLeft from './details/NavLeft';
 import NavRight from './details/NavRight';
 import Search from './details/Search';
 
-function NavBar() {
+function NavBar({funcSearch}) {
   return (
     <Flex
       w={'full'}
       h={'4rem'}
-      zIndex={2}
+      zIndex={10}
       px={'1rem'}
       position={'sticky'}
       top={'0px'}
@@ -19,7 +19,7 @@ function NavBar() {
     >
       <NavLeft />
       <Spacer />
-      <Search />
+      <Search funcSearch={funcSearch}/>
       <Spacer />
       <NavRight />
     </Flex>

@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Button,
   Flex,
   Grid,
@@ -9,12 +8,10 @@ import {
 import { FiMail, FiPhone, FiUnlock, FiUser } from 'react-icons/fi';
 import UserInfo from './details/UserInfo';
 import ModalChangePhoto from './details/ModalChangePhoto';
-import { useSelector } from 'react-redux';
 import AvatarUser from './details/AvatarUser';
 
 function ContainerProfile() {
   const { onOpen, isOpen, onClose } = useDisclosure();
-  const {user} = useSelector((state) => state.auth);
 
   return (
     <Flex

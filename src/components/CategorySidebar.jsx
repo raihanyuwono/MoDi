@@ -1,28 +1,18 @@
 import { Flex, Text } from '@chakra-ui/react';
 import SidebarCategoryList from './details/SidebarCategoryList';
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCategory } from '../storage/BlogReducer';
+import { useEffect, useState } from 'react';
+import { getCategory } from '../api/BlogApi';
 
 function CategorySidebar({ onChangeCategory }) {
   
-  const categories = useSelector((state) => state.blog.categories);
-  const dispatch = useDispatch();
+  const [categories, setCategories] = useState([]);
 
-  async function fetchCategories() {
-    try {
-      const res = await axios.get(
-        'https://minpro-blog.purwadhikabootcamp.com/api/blog/allCategory'
-      );
-      dispatch(setCategory([
-        { id: 0, name: 'Popular' }, 
-        ...res.data,
-      ]))
-      console.log("Categories")
-    } catch (error) {
-      console.log('fetchCetegories()', error);
-    }
+  async function fetchCategories(){
+    const category = await getCategory();
+    setCategories([
+      {id: 0, name: "Home"},
+      ...category,
+    ]);
   }
 
   useEffect(() => {

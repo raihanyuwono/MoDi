@@ -7,13 +7,22 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InputTags from './InputTags';
-import { useSelector } from 'react-redux';
+import { getCategory } from '../../api/BlogApi';
 
 function WriteForm() {
-  const categories = useSelector(state => state.blog.categories);
   const [imgURL, setImgURL] = useState('');
+  const [categories, SetCategories] = useState([]);
+
+  async function fetchCategory(){
+    const data = await getCategory();
+    SetCategories(data);
+  }
+
+  useEffect(() => {
+    fetchCategory();
+  }, [])
 
   function onAddImg() {
     try{
