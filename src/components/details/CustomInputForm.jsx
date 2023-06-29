@@ -33,6 +33,7 @@ function CustomInputForm({ id, type, placeholder, icon, pass, onPass }) {
 
   function whichSchema() {
     const schema = {};
+    // console.log(id)
     switch (type) {
       case 'email':
         schema[id] = Yup.string().email('invalid format').required('required');
@@ -45,7 +46,7 @@ function CustomInputForm({ id, type, placeholder, icon, pass, onPass }) {
       case 'password':
         if (id.match(/confirm/)) {
           let ref = id.split('-');
-          ref.splice(id.match(/confirm/).index, 1);
+          ref.splice(ref.findIndex((item)=>item === 'confirm'), 1);
           ref = ref.join('-');
           schema[id] = Yup.string()
             .oneOf(
