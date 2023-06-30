@@ -63,7 +63,7 @@ function WriteForm() {
         isValidFileType(value && value.name.toLowerCase(), 'image')
       )
       .test(
-        'is-valid-sixe',
+        'is-valid-size',
         'Max allowed size is 1MB',
         value => value && value.size <= MAX_FILE_SIZE
       ),
