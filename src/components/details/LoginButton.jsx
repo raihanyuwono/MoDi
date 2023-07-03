@@ -6,6 +6,7 @@ function LoginButton() {
   return (
     <>
       <Button variant={'solid'}
+      id='login-button'
       color={"primaryTextIcon"} 
       bgColor={"accent"}
       _hover={{bgColor: "accentSecondary"}}

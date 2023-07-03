@@ -1,4 +1,5 @@
 import {
+  Button,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -7,16 +8,20 @@ import {
   Select,
   Text,
   Textarea,
+  useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import InputTags from './InputTags';
-import { getCategory } from '../../api/BlogApi';
+import { createBlog, getCategory } from '../../api/BlogApi';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 function WriteForm() {
   const [imgURL, setImgURL] = useState('');
   const [categories, SetCategories] = useState([]);
+  const toast = useToast();
+  const navigate = useNavigate();
 
   async function fetchCategory() {
     const data = await getCategory();
@@ -34,7 +39,26 @@ function WriteForm() {
       setImgURL(imgURL);
     } catch (error) {
       console.log(error);
+      setImgURL('');
     }
+  }
+
+  async function onSubmitBlog() {
+    const data = {
+      title: document.getElementById('write-title').value,
+      content: document.getElementById('write-content').value,
+      CategoryId: document.getElementById('write-category').value,
+      keywords: sessionStorage.getItem('tags')?.split(',').join(' '),
+    };
+    const file = document.getElementById('write-img').files[0];
+
+    const dataForm = new FormData();
+    dataForm.append('data', JSON.stringify(data));
+    dataForm.append('file', file);
+
+    const res = await createBlog(toast, dataForm);
+    sessionStorage.removeItem('tags');
+    navigate('/');
   }
 
   const validFileExtensions = {
@@ -52,20 +76,20 @@ function WriteForm() {
 
   const writeSchema = {
     'write-title': Yup.string()
-      .max(40, 'max. 40 character')
+      .max(150, 'max. 150 character')
       .required('required'),
     'write-category': Yup.string().required('required'),
     'write-content': Yup.string()
-      .max(200, 'max. 200 character')
+      .max(500, 'max. 500 character')
       .required('required'),
     'write-img': Yup.mixed()
-      .test('is-valid-type', 'Not a valid type', value =>
-        isValidFileType(value && value.name.toLowerCase(), 'image')
+      .test('fileType', 'Not a valid type', file =>
+        isValidFileType(file && file.name.toLowerCase(), 'image')
       )
       .test(
-        'is-valid-size',
+        'fileSize',
         'Max allowed size is 1MB',
-        value => value && value.size <= MAX_FILE_SIZE
+        file => file && file.size <= MAX_FILE_SIZE
       ),
   };
 
@@ -79,103 +103,108 @@ function WriteForm() {
   const formik = useFormik({
     initialValues,
     validationSchema: Yup.object().shape(writeSchema),
+    onSubmit: () => onSubmitBlog(),
   });
 
   function handleOnChange(event) {
     const { target } = event;
     if (target.id === 'write-img') {
-      formik.setFieldValue(target.id, target.files[0]);
-      onAddImg();
-      console.log(target.files[0].size, target.files[0]);
+      if (target.files) {
+        formik.setFieldValue(target.id, target.files[0]);
+        onAddImg();
+      }
     } else formik.setFieldValue(target.id, target.value);
   }
 
   return (
-    <Flex direction={'column'} w={'full'} minH={'calc(100vh - 4rem)'} gap={5}>
-      <FormControl isInvalid={formik.errors['write-title']}>
-        <Input
-          id={'write-title'}
-          type={'text'}
-          w={'full'}
-          h={'4rem'}
-          borderColor={'lightPrimary'}
-          fontSize={'2rem'}
-          color={'primaryText'}
-          required
-          placeholder={'Title...'}
-          _placeholder={{ color: 'secondaryText' }}
-          onChange={handleOnChange}
-          focusBorderColor="lightPrimary"
-        />
-        <FormErrorMessage>{formik.errors['write-title']}</FormErrorMessage>
-      </FormControl>
-
-      <FormControl isInvalid={formik.errors['write-category']}>
-        <Select
-          id="write-category"
-          placeholder="Category"
-          borderColor={'lightPrimary'}
-          focusBorderColor="lightPrimary"
-          color={'primaryText'}
-          onChange={handleOnChange}
-        >
-          {categories.map((item, index) => {
-            return (
-              <option key={index} value={item.id}>
-                {item.name}
-              </option>
-            );
-          })}
-        </Select>
-        <FormErrorMessage>{formik.errors['write-category']}</FormErrorMessage>
-      </FormControl>
-
-      <InputTags id={'write-tags'} />
-
-      <FormControl isInvalid={formik.errors['write-content']}>
-        <Textarea
-          id="write-content"
-          type={'text'}
-          w={'full'}
-          h={'50vh'}
-          borderColor={'lightPrimary'}
-          fontSize={'1.25rem'}
-          color={'primaryText'}
-          required
-          placeholder={'Tell your story here...'}
-          _placeholder={{ color: 'secondaryText' }}
-          focusBorderColor="lightPrimary"
-          onChange={handleOnChange}
-        />
-        <FormErrorMessage>{formik.errors['write-content']}</FormErrorMessage>
-      </FormControl>
-
-      <FormControl isInvalid={formik.errors['write-img']}>
-        <Flex direction={'row'} alignItems={'baseline'}>
-          <Text w={'4rem'} mb={'0.5rem'}>
-            Image :
-          </Text>
+    <form onSubmit={formik.handleSubmit}>
+      <Flex direction={'column'} w={'full'} minH={'calc(100vh - 4rem)'} gap={5}>
+        <FormControl isInvalid={formik.errors['write-title']}>
           <Input
-            id="write-img"
-            type="file"
-            flexGrow={1}
-            variant={'unstyled'}
+            id={'write-title'}
+            type={'text'}
+            w={'full'}
+            h={'4rem'}
+            borderColor={'lightPrimary'}
+            fontSize={'2rem'}
+            color={'primaryText'}
+            required
+            placeholder={'Title...'}
+            _placeholder={{ color: 'secondaryText' }}
+            onChange={handleOnChange}
+            focusBorderColor="lightPrimary"
+          />
+          <FormErrorMessage>{formik.errors['write-title']}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={formik.errors['write-category']}>
+          <Select
+            id="write-category"
+            placeholder="Category"
+            borderColor={'lightPrimary'}
+            focusBorderColor="lightPrimary"
+            color={'primaryText'}
+            onChange={handleOnChange}
+          >
+            {categories.map((item, index) => {
+              return (
+                <option key={index} value={item.id}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </Select>
+          <FormErrorMessage>{formik.errors['write-category']}</FormErrorMessage>
+        </FormControl>
+
+        <InputTags id={'write-tags'} />
+
+        <FormControl isInvalid={formik.errors['write-content']}>
+          <Textarea
+            id="write-content"
+            type={'text'}
+            w={'full'}
+            h={'50vh'}
+            borderColor={'lightPrimary'}
+            fontSize={'1.25rem'}
+            color={'primaryText'}
+            required
+            placeholder={'Tell your story here...'}
+            _placeholder={{ color: 'secondaryText' }}
+            focusBorderColor="lightPrimary"
             onChange={handleOnChange}
           />
-        </Flex>
-        <FormErrorMessage>{formik.errors['wtite-img']}</FormErrorMessage>
-        <Image
-          id="write-preview-image"
-          src={imgURL}
-          alt={imgURL}
-          w={'full'}
-          borderRadius={'10px'}
-          boxShadow={'lg'}
-          objectFit={'cover'}
-          objectPosition={'center'}
-        />
-      </FormControl>
-    </Flex>
+          <FormErrorMessage>{formik.errors['write-content']}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={formik.errors['write-img']}>
+          <Flex direction={'row'} alignItems={'baseline'}>
+            <Text w={'4rem'} mb={'0.5rem'}>
+              Image :
+            </Text>
+            <Input
+              id="write-img"
+              type="file"
+              flexGrow={1}
+              variant={'unstyled'}
+              onChange={handleOnChange}
+            />
+          </Flex>
+          <FormErrorMessage>{formik.errors['wtite-img']}</FormErrorMessage>
+          <Image
+            id="write-preview-image"
+            src={imgURL}
+            alt={imgURL}
+            w={'full'}
+            borderRadius={'10px'}
+            boxShadow={'lg'}
+            objectFit={'cover'}
+            objectPosition={'center'}
+          />
+        </FormControl>
+        <Button id="write-submit" type="submit" display={'none'} />
+      </Flex>
+    </form>
   );
 }
 

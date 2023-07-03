@@ -129,4 +129,27 @@ async function getBookmark(token) {
   }
 }
 
-export { getCategory, getLatest, getPopular, likeBlog, dislikeBlog, getBookmark };
+async function createBlog(toast, data){
+  try {
+    const token = localStorage.getItem('token');
+    const res = await axios.post(
+      `${API_BASE_URL}${API_BLOG}`,
+      data,
+      {
+        headers : {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    )
+    console.log(res);
+    Toast(toast, {
+      title: res.data.message,
+      status: res.status,
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { getCategory, getLatest, getPopular, likeBlog, dislikeBlog, getBookmark, createBlog };
