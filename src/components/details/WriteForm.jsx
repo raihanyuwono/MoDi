@@ -190,7 +190,7 @@ function WriteForm() {
               onChange={handleOnChange}
             />
           </Flex>
-          <FormErrorMessage>{formik.errors['wtite-img']}</FormErrorMessage>
+          <FormErrorMessage>{formik.errors['write-img']}</FormErrorMessage>
           <Image
             id="write-preview-image"
             src={imgURL}
