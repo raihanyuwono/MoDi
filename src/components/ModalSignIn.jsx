@@ -92,13 +92,15 @@ function ModalSignIn({ isOpen, onClose }) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay backdropFilter={'blur(2px)'} />
       <ModalContent m={'auto'}>
+        <form>
+          
+        </form>
         <FormControl p={'3rem'}>
           <ModalCloseButton />
           <VStack>
             <Text fontSize={'2rem'} fontWeight={'semibold'}>
               {btnText}
             </Text>
-
             {wantForgot ? (
               <ForgotPasswordForm />
             ) : wantLogin ? (
@@ -122,12 +124,15 @@ function ModalSignIn({ isOpen, onClose }) {
             )}
 
             <Button
+              type='sumbit'
               w={'100%'}
               borderRadius={'3rem'}
               color={'primaryTextIcon'}
               bgColor={'login'}
               _hover={{ bgColor: 'loginSecondary' }}
-              onClick={wantForgot? onForgotPass : wantLogin ? onSignIn : onSignUp}
+              onClick={
+                wantForgot ? onForgotPass : wantLogin ? onSignIn : onSignUp
+              }
             >
               {btnText}
             </Button>

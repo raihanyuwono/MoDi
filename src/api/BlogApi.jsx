@@ -63,7 +63,6 @@ async function likeBlog(toast, token, BlogId) {
       }
     );
 
-    console.log(res);
     Toast(toast, {
       title: res.data,
       status: res.status,
@@ -82,7 +81,6 @@ async function likeBlog(toast, token, BlogId) {
 
 async function dislikeBlog(toast, token, BlogId) {
   try {
-    console.log(BlogId, token);
     const res = await axios.delete(
       `${API_BASE_URL}${API_BLOG}/unlike/${BlogId}`,
       {
@@ -92,7 +90,6 @@ async function dislikeBlog(toast, token, BlogId) {
       }
     );
 
-    console.log(res);
     Toast(toast, {
       title: res.data,
       status: res.status,
@@ -111,16 +108,11 @@ async function dislikeBlog(toast, token, BlogId) {
 
 async function getBookmark(token) {
   try {
-    const res = await axios.get(
-      `${API_BASE_URL}${API_BLOG}/pagLike`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    console.log(res);
+    const res = await axios.get(`${API_BASE_URL}${API_BLOG}/pagLike`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return res.data;
   } catch (error) {
@@ -129,27 +121,95 @@ async function getBookmark(token) {
   }
 }
 
-async function createBlog(toast, data){
+async function getArticle(id) {
   try {
-    const token = localStorage.getItem('token');
-    const res = await axios.post(
-      `${API_BASE_URL}${API_BLOG}`,
-      data,
-      {
-        headers : {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    )
-    console.log(res);
-    Toast(toast, {
-      title: res.data.message,
-      status: res.status,
-    })
+    const { data } = await axios.get(`${API_BASE_URL}${API_BLOG}/${id}`);
+    return data;
   } catch (error) {
     console.log(error);
   }
 }
 
-export { getCategory, getLatest, getPopular, likeBlog, dislikeBlog, getBookmark, createBlog };
+async function createBlog(toast, data) {
+  try {
+    const token = localStorage.getItem('token');
+    const res = await axios.post(`${API_BASE_URL}${API_BLOG}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    console.log(res);
+    Toast(toast, {
+      title: res.data.message,
+      status: res.status,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getWritten({
+  page = 1,
+  sortBy = 'createdAt',
+  sortType = 'DESC',
+  categoryId = '',
+  searchKey = '',
+  size = 50,
+}) {
+  try {
+    const token = localStorage.getItem('token');
+    const res = await axios.get(
+      `${API_BASE_URL}${API_BLOG}/auth?id_cat=${categoryId}&sort=${sortType}&page=${page}&search=${searchKey}&sortBy=${sortBy}&size=${size}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function delBlog(toast, id){
+  try {
+    const token = localStorage.getItem('token');
+    console.log(id);
+    const res = await axios.patch(
+      `${API_BASE_URL}${API_BLOG}/remove/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    Toast(toast, {
+      title: res.data,
+      status: res.status,
+    });
+
+    return true;
+  } catch (error) {
+    Toast(toast, {
+      title: error.response.data.err,
+      status: error.response.status,
+    });
+    return false;
+  }
+}
+
+export {
+  getCategory,
+  getLatest,
+  getPopular,
+  likeBlog,
+  dislikeBlog,
+  getBookmark,
+  getArticle,
+  createBlog,
+  getWritten,
+  delBlog
+};

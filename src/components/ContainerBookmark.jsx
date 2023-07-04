@@ -1,4 +1,4 @@
-import { Flex, Grid, useToast } from '@chakra-ui/react';
+import { Grid, useToast } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { dislikeBlog, getBookmark } from '../api/BlogApi';
 import CardBookmark from './details/CardBookmark';
@@ -13,10 +13,9 @@ function ContainerBookmark() {
 
   const toast = useToast();
 
-  function dislike(BlogId) {
-    // console.log(BlogId);
+  async function dislike(BlogId) {
     const token = localStorage.getItem('token');
-    dislikeBlog(toast, token, BlogId);
+    await dislikeBlog(toast, token, BlogId);
     fetchBookmark();
   }
 

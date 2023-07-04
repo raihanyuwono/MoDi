@@ -12,6 +12,7 @@ import { getPopular } from './api/BlogApi';
 import Read from './pages/Read';
 import Footer from './components/Footer';
 import Favourite from './pages/Favourite';
+import Written from './pages/Written';
 
 function App() {
   const [postList, setPostList] = useState([]);
@@ -80,6 +81,7 @@ function App() {
           <Route path="/write" element={<Write />} />
           <Route path="/read" element={<Read />} />
           <Route path="/bookmark" element={<Favourite />} />
+          <Route path="/written" element={<Written />} />
           <Route path="/verification/:token" element={<Verify />} />
           <Route
             path="/verification-change-email/:token"

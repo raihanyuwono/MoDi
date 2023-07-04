@@ -250,6 +250,7 @@ async function changePhotoProfile(toast, file) {
 }
 
 function getImage(imgURL){
+  if(!Boolean(imgURL)) return '';
   return `https://minpro-blog.purwadhikabootcamp.com/${imgURL}`;
 }
 

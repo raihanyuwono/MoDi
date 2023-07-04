@@ -22,11 +22,11 @@ function ModalChangePhoto({ isOpen, onClose }) {
   const [imgURL, setImgURL] = useState('');
 
   function onAddImg() {
-    try{
+    try {
       const [file] = document.getElementById('edit-img').files;
       const imgURL = URL.createObjectURL(file);
       setImgURL(imgURL);
-    } catch(error){
+    } catch (error) {
       console.log(error);
     }
   }
@@ -34,13 +34,12 @@ function ModalChangePhoto({ isOpen, onClose }) {
   async function onChangeImg() {
     const file = document.getElementById('edit-img').files[0];
     const isSuccess = await changePhotoProfile(toast, file);
-    if(isSuccess){
+    if (isSuccess) {
       onClose();
-      setTimeout(()=>{
+      setTimeout(() => {
         document.location.href = '/profile';
-
       }, 250);
-    };
+    }
   }
 
   return (
@@ -68,7 +67,12 @@ function ModalChangePhoto({ isOpen, onClose }) {
               </VStack>
             </HStack>
 
-            <Input id='edit-img' type='file' variant={'flushed'} onChange={onAddImg}/>
+            <Input
+              id="edit-img"
+              type="file"
+              variant={'flushed'}
+              onChange={onAddImg}
+            />
 
             <Button
               w={'100%'}
